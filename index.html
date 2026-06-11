@@ -2,51 +2,28 @@
 <html lang="es">
 
 <head>
-    <!-- ==========================================
-         CONFIGURACIONES BÁSICAS Y METADATOS
-         ========================================== -->
     <meta charset="UTF-8">
-    <!-- Etiqueta VITAL para que la web sea Responsive y se adapte al ancho de cualquier dispositivo móvil -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My phone - Tienda Oficial</title>
 
-    <!-- ==========================================
-         LIBRERÍAS EXTERNAS (CDNs)
-         ========================================== -->
-    <!-- FontAwesome: Proveedor de iconos (ej. lupa, carrito, usuario, barras de menú) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Swiper JS: Librería profesional para crear carruseles táctiles y automáticos -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
-    <!-- ==========================================
-         HOJAS DE ESTILOS (CSS)
-         ========================================== -->
-    <!-- Enlace a tu archivo CSS principal donde definimos todo el diseño visual -->
     <link rel="stylesheet" href="css/Style.css">
 </head>
 
-<!-- La clase 'no-scroll' evita que el usuario baje la página mientras el Loader está activo -->
-
 <body class="no-scroll">
 
-    <!-- ==========================================
-         1. PANTALLA DE CARGA (LOADER 3D)
-         ========================================== -->
-    <!-- Este contenedor cubre toda la pantalla inicialmente para mostrar una animación elegante -->
     <div id="loader-screen">
         <div class="loader-content">
-            <!-- Título de bienvenida (centrado y con efecto metálico en el CSS) -->
             <h2 id="welcome-msg" class="metallic-text">Bienvenidos A My Phone</h2>
 
-            <!-- Escenario donde gira la manzana y se muestra su reflejo -->
             <div class="apple-stage">
-                <!-- Logo principal (Manzana de Apple) -->
                 <div class="apple-wrapper">
                     <div class="rotate-logo">
                         <i class="fa-brands fa-apple silver-apple"></i>
                     </div>
                 </div>
-                <!-- Reflejo del logo (Se voltea y difumina con CSS) -->
                 <div class="apple-wrapper reflection">
                     <div class="rotate-logo">
                         <i class="fa-brands fa-apple silver-apple"></i>
@@ -54,40 +31,27 @@
                 </div>
             </div>
 
-            <!-- Texto intermitente para incentivar la interacción del usuario -->
             <p id="continue-msg">DALE CLIC PARA CONTINUAR</p>
         </div>
     </div>
 
-    <!-- ==========================================
-         2. BARRA SUPERIOR (TOP BAR)
-         ========================================== -->
-    <!-- Espacio ideal para mensajes de envíos, promociones o cupones -->
     <div class="top-bar">
         <p>ENVÍOS EN 24 HRS. A NIVEL LIMA METROPOLITANA</p>
     </div>
 
-    <!-- ==========================================
-         3. CABECERA PRINCIPAL (HEADER)
-         ========================================== -->
     <header class="main-header">
         <div class="header-container">
 
-            <!-- 3.1. Sección de Logo y Botón de Menú -->
             <div class="logo-section">
-                <!-- Botón de Menú (Solo visible en móviles para abrir el menú lateral) -->
                 <button class="btn-menu-outline" id="open-menu-btn">
                     <i class="fa-solid fa-bars"></i> Menú
                 </button>
-                <!-- Enlace del logo: Dirige directamente al WhatsApp del negocio -->
                 <a href="https://wa.me/51946330862?text=Hola%20My%20Phone,%20vengo%20de%20la%20página%20web%20y%20quisiera%20pedir%20información."
                     target="_blank" class="logo-link">
-                    <!-- Ruta de la imagen de tu logo -->
                     <img src="img/logotipo.png" alt="My Phone" class="site-logo">
                 </a>
             </div>
 
-            <!-- 3.2. Sección del Buscador -->
             <div class="search-section">
                 <div class="search-box">
                     <input type="text" placeholder="Las mejores promos">
@@ -95,34 +59,25 @@
                 </div>
             </div>
 
-            <!-- 3.3. Sección de Iconos (Usuario y Carrito) -->
             <div class="icons-section">
                 <a href="#" class="btn-login">
                     <i class="fa-regular fa-user"></i> <span>Iniciar Sesión</span>
                 </a>
                 <a href="#" class="cart-icon">
                     <i class="fa-solid fa-bag-shopping"></i>
-                    <!-- Etiqueta (Badge) para mostrar la cantidad de productos en el carrito -->
                     <span class="cart-badge">0</span>
                 </a>
             </div>
         </div>
     </header>
 
-    <!-- ==========================================
-         4. MENÚ LATERAL PARA MÓVILES (OFF-CANVAS)
-         ========================================== -->
-    <!-- Capa oscura semitransparente que cubre la página cuando el menú se abre -->
     <div id="menu-overlay" class="menu-overlay"></div>
 
-    <!-- Contenedor del menú que se desliza desde la izquierda -->
     <aside id="side-menu" class="side-menu">
-        <!-- Cabecera del menú lateral con botón de cierre (X) -->
         <div class="side-menu-header">
             <h3>Categorías</h3>
             <button id="close-menu-btn" class="close-btn"><i class="fa-solid fa-xmark"></i></button>
         </div>
-        <!-- Opciones de navegación -->
         <ul class="side-menu-list">
             <li><a href="#">AMAZON & GOOGLE</a></li>
             <li><a href="#">APPLE <i class="fa-solid fa-chevron-right"></i></a></li>
@@ -137,10 +92,6 @@
         </ul>
     </aside>
 
-    <!-- ==========================================
-         5. BARRA DE NAVEGACIÓN PARA PC
-         ========================================== -->
-    <!-- Se oculta en móviles mediante CSS para ahorrar espacio -->
     <nav class="categories-nav">
         <ul class="categories-list">
             <li><a href="#">AUDIFONOS</a></li>
@@ -154,26 +105,18 @@
         </ul>
     </nav>
 
-    <!-- ==========================================
-         6. CONTENIDO PRINCIPAL (CUERPO DE LA WEB)
-         ========================================== -->
     <main>
-
-        <!-- 6.1. Banner Principal (Hero Slider) -->
+        
         <section class="hero-section">
             <div class="swiper hero-swiper">
                 <div class="swiper-wrapper">
-
-                    <!-- PRIMER SLIDE -->
+                    
                     <div class="swiper-slide">
                         <div class="hero-slide-content">
-                            <!-- CAPA 1: Imagen de fondo (Reemplaza el src con la ruta de tu imagen) -->
                             <img src="img/iphone17pro.png" alt="iPhone 17 PRO" class="hero-bg-img">
-
-                            <!-- CAPA 2: Filtro oscuro semi-transparente para que el texto resalte -->
+                            
                             <div class="hero-overlay"></div>
-
-                            <!-- CAPA 3: Texto superior -->
+                            
                             <div class="hero-text">
                                 <h2>iPhone 17 PRO</h2>
                                 <p>Descubre el nuevo nivel de poder.</p>
@@ -181,16 +124,12 @@
                         </div>
                     </div>
 
-                    <!-- SEGUNDO SLIDE -->
                     <div class="swiper-slide">
                         <div class="hero-slide-content">
-                            <!-- CAPA 1: Imagen de fondo (Reemplaza el src con la ruta de tu imagen) -->
                             <img src="img/macbookairm3.png" alt="MacBook Air M3" class="hero-bg-img">
-
-                            <!-- CAPA 2: Filtro oscuro -->
+                            
                             <div class="hero-overlay"></div>
-
-                            <!-- CAPA 3: Texto superior -->
+                            
                             <div class="hero-text">
                                 <h2>MacBook Air M3</h2>
                                 <p>Ligera. Veloz. Impresionante.</p>
@@ -199,14 +138,12 @@
                     </div>
 
                 </div>
-                <!-- Flechas y puntos de control de navegación -->
                 <div class="swiper-button-next hero-next"></div>
                 <div class="swiper-button-prev hero-prev"></div>
                 <div class="swiper-pagination hero-pagination"></div>
             </div>
         </section>
 
-        <!-- 6.2. Carrusel de Categorías (Tarjetas pequeñas) -->
         <section class="categories-section">
             <div class="container">
                 <h2 class="section-title">Ver todos los productos.</h2>
@@ -258,23 +195,19 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Controles para el carrusel de categorías -->
                     <div class="swiper-button-prev cat-prev"></div>
                     <div class="swiper-button-next cat-next"></div>
                 </div>
             </div>
         </section>
 
-        <!-- 6.3. Cuadrícula de Productos (Novedades) -->
         <section class="products-section">
             <div class="container">
                 <h2 class="section-title">Echa un vistazo a las novedades.</h2>
 
-                <!-- Contenedor con CSS Grid para alinear productos automáticamente -->
                 <div class="products-grid">
-                    <!-- Producto 1 -->
                     <div class="product-card">
-                        <div class="discount-badge">-30%</div> <!-- Etiqueta de descuento -->
+                        <div class="discount-badge">-30%</div>
                         <div class="prod-img-placeholder">[Img Prod 1]</div>
                         <h4 class="prod-title">Adaptador Apple Carga Rápida 20W USB-C</h4>
                         <div class="prod-prices">
@@ -284,7 +217,6 @@
                         <button class="btn-add-cart"><i class="fa-solid fa-cart-plus"></i> Agregar</button>
                     </div>
 
-                    <!-- Producto 2 -->
                     <div class="product-card">
                         <div class="discount-badge">-15%</div>
                         <div class="prod-img-placeholder">[Img Prod 2]</div>
@@ -296,7 +228,6 @@
                         <button class="btn-add-cart"><i class="fa-solid fa-cart-plus"></i> Agregar</button>
                     </div>
 
-                    <!-- Producto 3 -->
                     <div class="product-card">
                         <div class="prod-img-placeholder">[Img Prod 3]</div>
                         <h4 class="prod-title">Funda de Silicona Magnética iPhone 15</h4>
@@ -306,7 +237,6 @@
                         <button class="btn-add-cart"><i class="fa-solid fa-cart-plus"></i> Agregar</button>
                     </div>
 
-                    <!-- Producto 4 -->
                     <div class="product-card">
                         <div class="discount-badge">-40%</div>
                         <div class="prod-img-placeholder">[Img Prod 4]</div>
@@ -321,11 +251,9 @@
             </div>
         </section>
 
-        <!-- 6.4. Banners Promocionales Dobles -->
         <section class="promo-banners">
             <div class="container">
                 <div class="banners-grid">
-                    <!-- Banner Oscuro (Izquierda en PC) -->
                     <a href="#" class="promo-banner dark-banner">
                         <div class="promo-content">
                             <h3>TITANIO</h3>
@@ -335,7 +263,6 @@
                         <div class="promo-img-placeholder">[Img iPhone]</div>
                     </a>
 
-                    <!-- Banner Claro (Derecha en PC) -->
                     <a href="#" class="promo-banner light-banner">
                         <div class="promo-content">
                             <h3>NUEVOS</h3>
@@ -349,25 +276,15 @@
         </section>
     </main>
 
-    <!-- ==========================================
-         7. BOTONES FLOTANTES DE ACCIÓN RÁPIDA
-         ========================================== -->
-    <!-- Botón flotante para chatear por WhatsApp -->
     <a href="https://wa.me/51946330862" class="floating-btn whatsapp-btn" target="_blank">
         <i class="fa-brands fa-whatsapp"></i>
     </a>
-    <!-- Botón flotante para acceder al Carrito -->
     <button class="floating-btn cart-float-btn">
         <i class="fa-solid fa-bag-shopping"></i>
         <span class="cart-badge-float">0</span>
     </button>
 
-    <!-- ==========================================
-         8. SCRIPTS (JAVASCRIPT)
-         ========================================== -->
-    <!-- Carga la librería Swiper antes de tu código para evitar errores -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <!-- Tu archivo JS de lógica personalizada -->
     <script src="js/script.js"></script>
 </body>
 
