@@ -701,7 +701,10 @@ a {
 
 .whatsapp-btn {
     left: 30px;
-    background-color: #25d366;
+    background-color: #075d27;
+    border-color: #064e66;
+    border-width: 5px;
+    border-style: solid;
     color: #fff;
 }
 
@@ -825,4 +828,12 @@ a {
 .side-menu-list li a i {
     font-size: 12px;
     color: #aaa;
+}
+
+@media (max-width: 768px) {
+
+    /* Estilos para tablets y móviles */
+    .contenedor {
+        flex-direction: column;
+    }
 }
