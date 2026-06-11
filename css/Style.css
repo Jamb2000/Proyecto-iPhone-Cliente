@@ -203,12 +203,12 @@ a {
 .logo-link {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 50px;
 }
 
 /* Control del logo de PC: Altura fija, ancho automático y máximo resguardo */
 .site-logo {
-    height: 70px;
+    height: 160px;
     width: auto;
     max-width: 250px;
     object-fit: contain;
