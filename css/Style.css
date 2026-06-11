@@ -1,6 +1,7 @@
 /* =========================================
-   1. VARIABLES Y CONFIGURACIÓN GLOBAL
+   1. VARIABLES GLOBALES Y RESETEO
    ========================================= */
+/* Definimos paleta de colores para mantener un diseño coherente */
 :root {
     --primary-orange: #ff5722;
     --primary-blue: #0066cc;
@@ -11,21 +12,20 @@
     --bg-black: #000000;
 }
 
-/* Reset universal */
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box; /* El padding no altera el ancho total */
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    box-sizing: border-box;
+    /* El padding no altera el ancho total */
+    font-family: -apple-system, sans-serif;
 }
 
 body {
     background-color: #fff;
     color: var(--text-dark);
-    overflow-x: hidden; /* Evita scrolls horizontales no deseados */
+    overflow-x: hidden;
 }
 
-/* Bloqueo de scroll dinámico (Controlado por JS durante el loader) */
 body.no-scroll {
     overflow: hidden;
 }
@@ -35,7 +35,7 @@ a {
     color: inherit;
 }
 
-/* Contenedor maestro central */
+/* Contenedor central que limita el máximo ancho en pantallas grandes */
 .container {
     max-width: 1400px;
     margin: 0 auto;
@@ -50,7 +50,7 @@ a {
 }
 
 /* =========================================
-   2. PANTALLA DE CARGA (LOADER MANZANA 3D)
+   2. PANTALLA DE CARGA (LOADER)
    ========================================= */
 #loader-screen {
     position: fixed;
@@ -72,17 +72,15 @@ a {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     width: 100%;
 }
 
 .metallic-text {
-    background: linear-gradient(145deg, #e6e6e6 0%, #999999 40%, #ffffff 60%, #737373 100%);
+    background: linear-gradient(145deg, #e6e6e6, #999, #fff, #737373);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
-/* Título de bienvenida centrado y elegante */
 #welcome-msg {
     font-size: 2.2rem;
     font-weight: 300;
@@ -90,10 +88,9 @@ a {
     margin-bottom: 30px;
     opacity: 0;
     transform: translateY(-20px);
-    transition: opacity 1s ease, transform 1s ease;
+    transition: 1s;
     text-align: center;
     line-height: 1.3;
-    padding: 0 15px;
 }
 
 #welcome-msg.show {
@@ -117,19 +114,17 @@ a {
     z-index: 2;
 }
 
-/* Efecto de reflejo de cristal usando mask-image */
 .apple-wrapper.reflection {
     top: 98px;
     transform: scaleY(-1);
     opacity: 0.25;
     z-index: 1;
-    -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 70%);
-    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 70%);
+    -webkit-mask-image: linear-gradient(to bottom, #000 0%, transparent 70%);
 }
 
 .silver-apple {
     font-size: 100px;
-    background: linear-gradient(145deg, #e6e6e6 0%, #999999 40%, #ffffff 60%, #737373 100%);
+    background: linear-gradient(145deg, #e6e6e6, #999, #fff, #737373);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -141,33 +136,43 @@ a {
 }
 
 @keyframes spin3D {
-    0% { transform: rotateY(0deg); }
-    100% { transform: rotateY(360deg); }
+    0% {
+        transform: rotateY(0deg);
+    }
+
+    100% {
+        transform: rotateY(360deg);
+    }
 }
 
 #continue-msg {
     color: #888;
     font-size: 0.75rem;
-    font-weight: 400;
     letter-spacing: 4px;
-    text-transform: uppercase;
     opacity: 0;
-    transition: opacity 1s ease;
+    transition: 1s;
     text-align: center;
 }
 
 #continue-msg.show {
     opacity: 0.7;
-    animation: pulseText 2.5s infinite ease-in-out;
+    animation: pulseText 2.5s infinite;
 }
 
 @keyframes pulseText {
-    0%, 100% { opacity: 0.3; }
-    50% { opacity: 0.8; }
+
+    0%,
+    100% {
+        opacity: 0.3;
+    }
+
+    50% {
+        opacity: 0.8;
+    }
 }
 
 /* =========================================
-   3. CABECERA (TOP BAR, LOGO, BUSCADOR)
+   3. CABECERA Y NAVEGACIÓN
    ========================================= */
 .top-bar {
     background-color: #222;
@@ -176,10 +181,8 @@ a {
     padding: 8px 15px;
     font-size: 11px;
     font-weight: 700;
-    letter-spacing: 1px;
     display: flex;
     justify-content: center;
-    align-items: center;
 }
 
 .main-header {
@@ -188,60 +191,46 @@ a {
 }
 
 .header-container {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 30px;
+    max-width: 1400px;
+    margin: auto;
+    padding: 0 20px;
 }
 
-.logo-section {
+.logo-section,
+.logo-link {
     display: flex;
     align-items: center;
     gap: 20px;
 }
 
-.logo-link {
-    display: flex;
-    align-items: center;
-}
-
 .site-logo {
     height: 150px;
-    width: auto;
     object-fit: contain;
-    border-radius: 8px;
-    transition: transform 0.3s ease, opacity 0.3s ease;
+    transition: 0.3s;
 }
 
 .site-logo:hover {
     transform: scale(1.05);
-    opacity: 0.9;
 }
 
 .btn-menu-outline {
     background: transparent;
-    border: 1px solid var(--border-color);
+    border: 1px solid #ddd;
     padding: 8px 15px;
     border-radius: 5px;
     font-size: 14px;
-    color: var(--text-gray);
     cursor: pointer;
     display: flex;
     align-items: center;
     gap: 8px;
-    transition: all 0.3s;
-}
-
-.btn-menu-outline:hover {
-    border-color: var(--text-dark);
-    color: var(--text-dark);
 }
 
 .search-section {
-    flex: 1; /* El buscador copa el espacio sobrante al centro */
+    flex: 1;
     max-width: 600px;
 }
 
@@ -249,7 +238,6 @@ a {
     display: flex;
     background-color: var(--bg-light-gray);
     border-radius: 5px;
-    overflow: hidden;
     padding: 2px;
 }
 
@@ -258,81 +246,64 @@ a {
     border: none;
     background: transparent;
     padding: 12px 15px;
-    font-size: 14px;
     outline: none;
-    color: var(--text-dark);
 }
 
 .search-box button {
     background: transparent;
     border: none;
     padding: 0 15px;
-    color: var(--text-gray);
     cursor: pointer;
-    font-size: 16px;
 }
 
 .icons-section {
     display: flex;
-    align-items: center;
     gap: 20px;
+    align-items: center;
 }
 
 .btn-login {
     display: flex;
-    align-items: center;
     gap: 8px;
-    border: 1px solid var(--border-color);
+    border: 1px solid #ddd;
     padding: 8px 15px;
     border-radius: 5px;
     font-size: 14px;
-    color: var(--text-gray);
-    transition: all 0.3s;
-}
-
-.btn-login:hover {
-    border-color: var(--text-dark);
-    color: var(--text-dark);
 }
 
 .cart-icon {
     position: relative;
     font-size: 24px;
-    color: var(--text-dark);
 }
 
 .cart-badge {
     position: absolute;
     top: -5px;
     right: -10px;
-    background-color: var(--primary-orange);
-    color: white;
+    background: var(--primary-orange);
+    color: #fff;
     font-size: 11px;
-    font-weight: bold;
     width: 18px;
     height: 18px;
+    border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 50%;
 }
 
-/* =========================================
-   4. BARRA DE NAVEGACIÓN PC (CATEGORÍAS)
-   ========================================= */
+/* Menú PC */
 .categories-nav {
-    border-bottom: 1px solid var(--border-color);
+    border-bottom: 1px solid #ddd;
 }
 
 .categories-list {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 20px;
-    list-style: none;
     display: flex;
     justify-content: center;
     gap: 30px;
-    overflow-x: auto;
+    list-style: none;
+    padding: 0 20px;
+    max-width: 1400px;
+    margin: auto;
 }
 
 .categories-list li a {
@@ -340,8 +311,7 @@ a {
     padding: 15px 0;
     font-size: 12px;
     font-weight: 600;
-    color: var(--text-dark);
-    transition: color 0.3s;
+    transition: 0.3s;
 }
 
 .categories-list li a:hover {
@@ -349,19 +319,12 @@ a {
 }
 
 /* =========================================
-   5. BANNER PRINCIPAL (HERO Y CAPAS DE IMAGEN)
+   4. SLIDER HERO PRINCIPAL
    ========================================= */
-.hero-section {
-    position: relative;
-    width: 100%;
-}
-
 .hero-swiper {
-    width: 100%;
-    height: 500px; /* Altura predeterminada en PC */
+    height: 500px;
 }
 
-/* Contenedor centralizado para las capas de cada diapositiva */
 .hero-slide-content {
     position: relative;
     width: 100%;
@@ -370,63 +333,57 @@ a {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    overflow: hidden; /* Oculta lo que desborde del contenedor */
+    overflow: hidden;
 }
 
-/* Capa 1: La imagen de fondo. Object-fit se asegura de llenar el contenedor sin deformarse */
+/* La imagen se expande cubriendo todo el espacio como un fondo sin deformarse */
 .hero-bg-img {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Mantiene la proporción correcta y recorta bordes sobrantes */
-    object-position: center; /* Garantiza que siempre se priorice el centro de tu foto */
-    z-index: 1; /* Nivel inferior */
+    object-fit: cover;
+    object-position: center;
+    z-index: 1;
 }
 
-/* Capa 2: Filtro negro que garantiza la legibilidad del texto sin importar qué foto uses */
 .hero-overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.4); /* Cambia 0.4 por un número mayor si quieres oscurecer más */
+    background: rgba(0, 0, 0, 0.4);
     z-index: 2;
 }
 
-/* Capa 3: Textos frontales */
 .hero-text {
     position: relative;
-    z-index: 3; /* Nivel superior, va encima del overlay y la imagen */
+    z-index: 3;
     color: #fff;
     text-align: center;
-    padding: 0 20px;
 }
 
 .hero-text h2 {
     font-size: 45px;
     font-weight: 900;
-    margin-bottom: 10px;
-    text-shadow: 2px 2px 5px rgba(0,0,0,0.5); /* Sombra difusa para máxima lectura */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
 }
 
 .hero-text p {
     font-size: 18px;
-    font-weight: 500;
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
 }
 
-/* Estilos de botones internos del carrusel principal */
-.swiper-button-next.hero-next,
-.swiper-button-prev.hero-prev {
+/* Personalización botones slider */
+.swiper-button-next,
+.swiper-button-prev {
     color: rgba(255, 255, 255, 0.7);
-    transition: color 0.3s;
 }
 
-.swiper-button-next.hero-next:hover,
-.swiper-button-prev.hero-prev:hover {
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
     color: #fff;
 }
 
@@ -441,118 +398,104 @@ a {
 }
 
 /* =========================================
-   6. CARRUSEL DE CATEGORÍAS
+   5. CARRUSELES DE TARJETAS (MEJORADOS)
    ========================================= */
 .categories-section {
     padding: 50px 0;
     background-color: #fafafa;
 }
 
-.categories-carousel-wrapper {
-    position: relative;
-    padding: 0 40px;
-}
-
-.cat-slide {
-    width: auto;
-}
-
-.category-card {
-    min-width: 160px;
-    max-width: 200px;
-    background: #fff;
-    border-radius: 12px;
-    padding: 20px 10px;
-    text-align: center;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    display: block;
-}
-
-.category-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
-}
-
-.cat-img-placeholder {
-    height: 100px;
-    background-color: #f0f0f0;
-    margin-bottom: 15px;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #aaa;
-    font-size: 14px;
-}
-
-.category-card h3 {
-    font-size: 12px;
-    font-weight: 800;
-    color: #333;
-    margin-bottom: 8px;
-    text-transform: uppercase;
-}
-
-.category-card p {
-    font-size: 11px;
-    color: #888;
-}
-
-/* Controles de navegación del carrusel inferior */
-.swiper-button-prev.cat-prev,
-.swiper-button-next.cat-next {
-    background: #fff;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    color: #333;
-    margin-top: -20px;
-}
-
-.swiper-button-prev.cat-prev:after,
-.swiper-button-next.cat-next:after {
-    font-size: 16px;
-    font-weight: bold;
-}
-
-/* =========================================
-   7. CUADRÍCULA DE PRODUCTOS
-   ========================================= */
 .products-section {
     padding: 60px 0;
     background-color: #fff;
 }
 
-/* El auto-fill organiza la cuadrícula llenando el espacio disponible con base en minmax */
-.products-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    gap: 25px;
+/* Contenedor relativo para posicionar flechas por fuera */
+.categories-carousel-wrapper,
+.products-carousel-wrapper {
+    position: relative;
+    padding: 0 40px;
+}
+
+/* Permitimos que CSS controle el ancho de las tarjetas en el de Categorías */
+.cat-slide {
+    width: auto;
+}
+
+/* Tarjetas Categorías (Grandes y Estéticas) */
+.category-card {
+    min-width: 220px;
+    /* Tamaño considerable y profesional */
+    max-width: 280px;
+    background: #fff;
+    border-radius: 15px;
+    /* Bordes suaves */
+    padding: 25px 15px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: block;
+    border: 1px solid #f0f0f0;
+}
+
+.category-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
+}
+
+.cat-img-placeholder {
+    height: 140px;
+    /* Imagen más alta */
+    background-color: #f9f9f9;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #aaa;
+}
+
+.category-card h3 {
+    font-size: 14px;
+    font-weight: 800;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.category-card p {
+    font-size: 12px;
+    color: #888;
+}
+
+/* Tarjetas de Productos en el nuevo Carrusel */
+.prod-slide {
+    height: auto;
+    /* Permite que las tarjetas estiren al mismo alto */
 }
 
 .product-card {
+    height: 100%;
+    /* Ocupa el 100% del slide */
     background: #fff;
     border: 1px solid #eee;
     border-radius: 12px;
     padding: 20px;
     position: relative;
-    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    transition: 0.3s;
     display: flex;
     flex-direction: column;
 }
 
 .product-card:hover {
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
     transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
 }
 
 .discount-badge {
     position: absolute;
     top: 15px;
     left: 15px;
-    background-color: #e53935;
+    background: #e53935;
     color: #fff;
     font-size: 12px;
     font-weight: bold;
@@ -563,30 +506,28 @@ a {
 
 .prod-img-placeholder {
     height: 200px;
-    background-color: #f9f9f9;
+    background: #f9f9f9;
     border-radius: 8px;
     display: flex;
-    align-items: center;
     justify-content: center;
-    color: #ccc;
+    align-items: center;
     margin-bottom: 20px;
-    font-size: 14px;
 }
 
+/* Flex-grow empuja los precios y botón hacia abajo, alineando todo */
 .prod-title {
     font-size: 15px;
     font-weight: 600;
-    color: #333;
+    flex-grow: 1;
     margin-bottom: 15px;
     line-height: 1.4;
-    flex-grow: 1; /* Alinea los botones de la cuadrícula enviándolos hasta el fondo */
 }
 
 .prod-prices {
     display: flex;
-    align-items: center;
     gap: 10px;
     margin-bottom: 15px;
+    align-items: center;
 }
 
 .old-price {
@@ -602,173 +543,47 @@ a {
 }
 
 .btn-add-cart {
-    width: 100%;
-    background-color: var(--primary-blue);
+    background: var(--primary-blue);
     color: #fff;
     border: none;
     padding: 12px;
     border-radius: 8px;
     font-weight: 600;
-    font-size: 14px;
     cursor: pointer;
-    transition: background-color 0.3s;
     display: flex;
     justify-content: center;
-    align-items: center;
     gap: 8px;
+    transition: 0.3s;
 }
 
 .btn-add-cart:hover {
-    background-color: #005bb5;
+    background: #004ba0;
 }
 
-/* =========================================
-   8. BANNERS PROMOCIONALES DOBLES
-   ========================================= */
-.promo-banners {
-    padding: 40px 0;
-    background-color: #fff;
-}
-
-.banners-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
-}
-
-.promo-banner {
-    border-radius: 15px;
-    padding: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    overflow: hidden;
-    transition: transform 0.3s ease;
-}
-
-.promo-banner:hover {
-    transform: translateY(-5px);
-}
-
-.dark-banner {
-    background-color: #111;
-    color: #fff;
-}
-
-.light-banner {
-    background-color: #f5f5f7;
-    color: #333;
-}
-
-.promo-content h3 {
-    font-size: 14px;
-    font-weight: 600;
-    letter-spacing: 2px;
-    margin-bottom: 10px;
-    opacity: 0.8;
-}
-
-.promo-content h2 {
-    font-size: 28px;
-    font-weight: 800;
-    margin-bottom: 20px;
-}
-
-.btn-outline {
-    display: inline-block;
-    padding: 10px 20px;
-    border: 2px solid #fff;
-    border-radius: 30px;
-    font-size: 14px;
-    font-weight: bold;
-    transition: background 0.3s, color 0.3s;
-}
-
-.btn-outline:hover {
+/* Flechas personalizadas redondas para los carruseles de productos/categorías */
+.swiper-button-prev.cat-prev,
+.swiper-button-next.cat-next,
+.swiper-button-prev.prod-prev,
+.swiper-button-next.prod-next {
     background: #fff;
-    color: #111;
-}
-
-.light-banner .btn-outline {
-    border-color: #333;
-    color: #333;
-}
-
-.light-banner .btn-outline:hover {
-    background: #333;
-    color: #fff;
-}
-
-.promo-img-placeholder {
-    width: 150px;
-    height: 150px;
-    background: rgba(128, 128, 128, 0.2);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 10px;
-    font-size: 12px;
-    text-align: center;
-}
-
-/* =========================================
-   9. BOTONES FLOTANTES DE ACCIÓN RÁPIDA
-   ========================================= */
-.floating-btn {
-    position: fixed;
-    bottom: 30px;
-    width: 60px;
-    height: 60px;
+    width: 45px;
+    height: 45px;
     border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 30px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    cursor: pointer;
-    z-index: 9999;
-    transition: transform 0.3s ease;
-    border: none;
-}
-
-.floating-btn:hover {
-    transform: scale(1.1);
-}
-
-.whatsapp-btn {
-    left: 30px;
-    background-color: #075d27;
-    border-color: #064e66;
-    border-width: 5px;
-    border-style: solid;
-    color: #fff;
-}
-
-.cart-float-btn {
-    right: 30px;
-    background-color: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
     color: #333;
-    border-radius: 15px;
+    margin-top: -22px;
 }
 
-.cart-badge-float {
-    position: absolute;
-    top: -5px;
-    left: -5px;
-    background-color: #ff3b30;
-    color: #fff;
-    font-size: 12px;
+.swiper-button-prev.cat-prev:after,
+.swiper-button-next.cat-next:after,
+.swiper-button-prev.prod-prev:after,
+.swiper-button-next.prod-next:after {
+    font-size: 18px;
     font-weight: bold;
-    width: 20px;
-    height: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
 }
 
 /* =========================================
-   10. MENÚ LATERAL (OFF-CANVAS PARA MÓVILES)
+   6. MENÚ LATERAL Y BOTONES FLOTANTES
    ========================================= */
 .menu-overlay {
     position: fixed;
@@ -780,7 +595,7 @@ a {
     z-index: 100000;
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.3s ease;
+    transition: 0.3s;
 }
 
 .menu-overlay.active {
@@ -794,11 +609,10 @@ a {
     left: 0;
     width: 320px;
     height: 100vh;
-    background-color: #fff;
+    background: #fff;
     z-index: 100001;
     transform: translateX(-100%);
-    transition: transform 0.3s ease;
-    box-shadow: 5px 0 15px rgba(0, 0, 0, 0.1);
+    transition: 0.3s;
     display: flex;
     flex-direction: column;
 }
@@ -810,82 +624,305 @@ a {
 .side-menu-header {
     display: flex;
     justify-content: space-between;
-    align-items: center;
     padding: 20px;
     border-bottom: 1px solid #eee;
-}
-
-.side-menu-header h3 {
-    font-size: 18px;
-    color: #333;
-    font-weight: 700;
-}
-
-.close-btn {
-    background: none;
-    border: none;
-    font-size: 20px;
-    cursor: pointer;
-    color: #666;
-}
-
-.close-btn:hover {
-    color: #e53935;
-}
-
-.side-menu-list {
-    list-style: none;
-    overflow-y: auto;
-    padding: 10px 0;
-}
-
-.side-menu-list li {
-    border-bottom: 1px solid #fafafa;
 }
 
 .side-menu-list li a {
     display: flex;
     justify-content: space-between;
-    align-items: center;
     padding: 15px 20px;
-    color: #444;
-    font-weight: 600;
+    border-bottom: 1px solid #fafafa;
     font-size: 14px;
-    transition: background 0.3s, color 0.3s;
+    color: #444;
 }
 
-.side-menu-list li a:hover {
-    background-color: #f9f9f9;
-    color: var(--primary-blue);
+.floating-btn {
+    position: fixed;
+    bottom: 30px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    z-index: 9999;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
 }
 
-.side-menu-list li a i {
-    font-size: 12px;
-    color: #aaa;
+.floating-btn:hover {
+    transform: scale(1.1);
+}
+
+.whatsapp-btn {
+    left: 30px;
+    background: #075d27;
+    color: #fff;
+    border: 5px solid #064e66;
+}
+
+.cart-float-btn {
+    right: 30px;
+    background: #fff;
+    color: #333;
+    border-radius: 15px;
 }
 
 /* =========================================
-   11. RESPONSIVE DESIGN (Media Queries Adaptativas)
+   7. PIE DE PÁGINA (FOOTER PROFESIONAL)
+   ========================================= */
+.site-footer {
+    background-color: #f8f9fa;
+    /* Tonalidad gris muy suave */
+    border-top: 1px solid #eaeaea;
+    margin-top: 60px;
+    color: #333;
+}
+
+/* Franja de métodos de pago */
+.footer-payments {
+    border-bottom: 1px solid #eaeaea;
+    padding: 30px 0;
+    text-align: center;
+}
+
+.footer-payments h4 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #444;
+}
+
+.payment-icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    font-size: 35px;
+    color: #555;
+}
+
+/* Estilos simulados para Yape y Plin */
+.pay-badge {
+    background: #742284;
+    color: #fff;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 8px 15px;
+    border-radius: 20px;
+}
+
+.pay-badge.plin {
+    background: #00d8b4;
+}
+
+.pay-badge.bank {
+    background: #eee;
+    color: #333;
+    border: 1px solid #ccc;
+}
+
+/* Contenido Principal (Uso de CSS Grid para separar en 5 columnas en PC) */
+.footer-main {
+    padding: 60px 0;
+}
+
+.footer-grid {
+    display: grid;
+    /* La 1ra y 5ta columna son ligeramente más anchas (1.5fr) */
+    grid-template-columns: 1.5fr 1fr 1fr 1fr 1.5fr;
+    gap: 30px;
+}
+
+.footer-col h4 {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #111;
+}
+
+.footer-col ul {
+    list-style: none;
+}
+
+.footer-col ul li {
+    margin-bottom: 12px;
+}
+
+.footer-col ul li a {
+    color: #666;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.footer-col ul li a:hover {
+    color: var(--primary-blue);
+}
+
+/* Info de Contacto */
+.footer-logo {
+    height: 50px;
+    margin-bottom: 20px;
+}
+
+.contact-info li {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    color: #555;
+    font-size: 13px;
+}
+
+.contact-info i {
+    font-size: 18px;
+    color: var(--primary-blue);
+    margin-top: 3px;
+}
+
+.contact-info span {
+    display: block;
+    color: #888;
+    font-size: 11px;
+    text-transform: uppercase;
+}
+
+.contact-info strong {
+    display: block;
+    font-size: 14px;
+    color: #222;
+}
+
+/* Botón Libro Reclamaciones */
+.reclamaciones-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid #ccc;
+    padding: 10px 15px;
+    background: #fff;
+    border-radius: 5px;
+    margin-top: 15px;
+    color: #333;
+    font-weight: bold;
+    font-size: 12px;
+    transition: 0.3s;
+}
+
+.reclamaciones-btn i {
+    font-size: 24px;
+    color: #444;
+}
+
+.reclamaciones-btn:hover {
+    border-color: var(--text-dark);
+    background: #eee;
+}
+
+/* Boletín y Redes */
+.newsletter-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.newsletter-form input {
+    padding: 12px 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    outline: none;
+}
+
+.newsletter-form button {
+    background: #222;
+    color: #fff;
+    border: none;
+    padding: 12px 15px;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.newsletter-form button:hover {
+    background: var(--primary-blue);
+}
+
+.mt-20 {
+    margin-top: 25px;
+}
+
+.social-icons {
+    display: flex;
+    gap: 10px;
+}
+
+.social-icons a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 35px;
+    height: 35px;
+    background: #333;
+    color: #fff;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.social-icons a:hover {
+    background: var(--primary-orange);
+    transform: translateY(-3px);
+}
+
+/* Línea Inferior (Copyright) */
+.footer-bottom {
+    background-color: #eee;
+    padding: 20px 0;
+    font-size: 13px;
+    color: #666;
+}
+
+.bottom-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+/* =========================================
+   8. RESPONSIVE DESIGN (MEDIA QUERIES)
    ========================================= */
 
-/* Tablets (992px y menos) */
+/* Tablets */
 @media (max-width: 992px) {
     .header-container {
         flex-wrap: wrap;
     }
+
     .search-section {
         order: 3;
         width: 100%;
         margin-top: 10px;
     }
+
     .logo-section {
         flex: 1;
     }
+
+    /* El footer pasa a tener 3 columnas */
+    .footer-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
 }
 
-/* Teléfonos Móviles (768px y menos) */
+/* Teléfonos Móviles */
 @media (max-width: 768px) {
-    
     #welcome-msg {
         font-size: 1.6rem;
         text-align: center;
@@ -898,19 +935,19 @@ a {
         padding: 10px 5px;
     }
 
-    /* GRID MÓVIL: Centra el logo de forma estricta asegurando orden visual */
+    /* Cabecera Móvil en Grid */
     .header-container {
         display: grid;
         grid-template-columns: 1fr auto 1fr;
-        grid-template-areas:
-            "menu logo icons"
-            "search search search";
+        grid-template-areas: "menu logo icons" "search search search";
         gap: 15px;
         padding: 15px 20px;
         align-items: center;
     }
 
-    .logo-section { display: contents; }
+    .logo-section {
+        display: contents;
+    }
 
     .btn-menu-outline {
         grid-area: menu;
@@ -921,11 +958,11 @@ a {
 
     .logo-link {
         grid-area: logo;
-        justify-self: center; /* Garantiza el centrado exacto */
+        justify-self: center;
     }
 
     .site-logo {
-        height: 65px; /* Logo grande pero proporcionado a móviles */
+        height: 65px;
     }
 
     .icons-section {
@@ -940,20 +977,27 @@ a {
         width: 100%;
     }
 
-    .btn-login span { display: none; }
-    .btn-login { padding: 8px 12px; }
-    
-    .categories-nav { display: none; }
+    .btn-login span {
+        display: none;
+    }
 
-    /* REDUCCIÓN DE ALTURA: Evita el recorte lateral masivo en celulares */
+    .btn-login {
+        padding: 8px 12px;
+    }
+
+    .categories-nav {
+        display: none;
+    }
+
+    /* Alturas y Títulos reducidos */
     .hero-swiper {
-        height: 220px; /* Altura ideal para emular el banner horizontal en vertical */
+        height: 220px;
     }
-    
+
     .hero-text h2 {
-        font-size: 26px; /* Tipografía más chica para ajustarse al bloque nuevo */
+        font-size: 26px;
     }
-    
+
     .hero-text p {
         font-size: 14px;
     }
@@ -963,26 +1007,38 @@ a {
         text-align: center;
     }
 
-    /* 2 productos exactos por fila garantizados en cualquier celular */
-    .products-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 10px;
+    /* Las flechas en móvil ocupan mucho, mejor ocultarlas y dejar navegación táctil */
+    .swiper-button-prev,
+    .swiper-button-next {
+        display: none;
     }
-    .product-card { padding: 15px; }
-    .prod-img-placeholder { height: 120px; }
-    .prod-title { font-size: 13px; margin-bottom: 10px; }
-    .new-price { font-size: 16px; }
-    .btn-add-cart { padding: 10px; font-size: 12px; }
 
-    /* Convierte los bloques dobles a bloques en columna */
-    .promo-banner {
-        flex-direction: column;
+    .categories-carousel-wrapper,
+    .products-carousel-wrapper {
+        padding: 0;
+    }
+
+    /* FOOTER MÓVIL: Las 5 columnas se apilan 1 debajo de la otra y se centra todo el texto */
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .footer-col {
         text-align: center;
-        gap: 20px;
     }
-    .promo-img-placeholder { margin-top: 10px; }
-    .promo-content h2 { font-size: 22px; text-align: center; }
 
-    .category-card { min-width: 130px; padding: 15px 10px; }
-    .cat-img-placeholder { height: 80px; }
+    .contact-info li {
+        justify-content: center;
+        text-align: left;
+    }
+
+    .social-icons {
+        justify-content: center;
+    }
+
+    .bottom-flex {
+        justify-content: center;
+        text-align: center;
+    }
 }

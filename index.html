@@ -2,56 +2,68 @@
 <html lang="es">
 
 <head>
+    <!-- ==========================================
+         CONFIGURACIONES BÁSICAS Y METADATOS
+         ========================================== -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My phone - Tienda Oficial</title>
 
+    <!-- Favicon: Icono de la pestaña del navegador -->
+    <link rel="icon" href="img/logotipo.png" type="image/png">
+
+    <!-- ==========================================
+         LIBRERÍAS EXTERNAS (CDNs)
+         ========================================== -->
+    <!-- FontAwesome para los iconos y Swiper JS para los carruseles táctiles -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
+    <!-- Hoja de estilos principal -->
     <link rel="stylesheet" href="css/Style.css">
 </head>
 
 <body class="no-scroll">
 
+    <!-- ==========================================
+         1. PANTALLA DE CARGA (LOADER 3D)
+         ========================================== -->
     <div id="loader-screen">
         <div class="loader-content">
             <h2 id="welcome-msg" class="metallic-text">Bienvenidos A My Phone</h2>
-
             <div class="apple-stage">
                 <div class="apple-wrapper">
-                    <div class="rotate-logo">
-                        <i class="fa-brands fa-apple silver-apple"></i>
-                    </div>
+                    <div class="rotate-logo"><i class="fa-brands fa-apple silver-apple"></i></div>
                 </div>
                 <div class="apple-wrapper reflection">
-                    <div class="rotate-logo">
-                        <i class="fa-brands fa-apple silver-apple"></i>
-                    </div>
+                    <div class="rotate-logo"><i class="fa-brands fa-apple silver-apple"></i></div>
                 </div>
             </div>
-
             <p id="continue-msg">DALE CLIC PARA CONTINUAR</p>
         </div>
     </div>
 
+    <!-- ==========================================
+         2. CABECERA (TOP BAR & HEADER)
+         ========================================== -->
     <div class="top-bar">
         <p>ENVÍOS EN 24 HRS. A NIVEL LIMA METROPOLITANA</p>
     </div>
 
     <header class="main-header">
         <div class="header-container">
-
+            <!-- Izquierda: Menú móvil y Logo -->
             <div class="logo-section">
                 <button class="btn-menu-outline" id="open-menu-btn">
                     <i class="fa-solid fa-bars"></i> Menú
                 </button>
-                <a href="https://wa.me/51946330862?text=Hola%20My%20Phone,%20vengo%20de%20la%20página%20web%20y%20quisiera%20pedir%20información."
+                <a href="https://wa.me/51946330862?text=Hola%20My%20Phone,%20quisiera%20pedir%20información."
                     target="_blank" class="logo-link">
                     <img src="img/logotipo.png" alt="My Phone" class="site-logo">
                 </a>
             </div>
 
+            <!-- Centro: Buscador -->
             <div class="search-section">
                 <div class="search-box">
                     <input type="text" placeholder="Las mejores promos">
@@ -59,6 +71,7 @@
                 </div>
             </div>
 
+            <!-- Derecha: Usuario y Carrito -->
             <div class="icons-section">
                 <a href="#" class="btn-login">
                     <i class="fa-regular fa-user"></i> <span>Iniciar Sesión</span>
@@ -71,8 +84,13 @@
         </div>
     </header>
 
+    <!-- ==========================================
+         3. MENÚS DE NAVEGACIÓN
+         ========================================== -->
+    <!-- Capa oscura del menú móvil -->
     <div id="menu-overlay" class="menu-overlay"></div>
 
+    <!-- Menú lateral deslizable (Móviles) -->
     <aside id="side-menu" class="side-menu">
         <div class="side-menu-header">
             <h3>Categorías</h3>
@@ -81,62 +99,57 @@
         <ul class="side-menu-list">
             <li><a href="#">AMAZON & GOOGLE</a></li>
             <li><a href="#">APPLE <i class="fa-solid fa-chevron-right"></i></a></li>
-            <li><a href="#">AUDIFONOS <i class="fa-solid fa-chevron-right"></i></a></li>
+            <li><a href="#">AUDIFONOS</a></li>
             <li><a href="#">BELLEZA & SALUD</a></li>
             <li><a href="#">CARGADOR, POWERBANK</a></li>
-            <li><a href="#">CASE & COVERS <i class="fa-solid fa-chevron-right"></i></a></li>
-            <li><a href="#">MEMORIA & ALMACENAMIENTO</a></li>
-            <li><a href="#">ROCK, BASEUS, USAMS <i class="fa-solid fa-chevron-right"></i></a></li>
-            <li><a href="#">TECLADO, ACC DE COMPUTO</a></li>
+            <li><a href="#">CASE & COVERS</a></li>
             <li><a href="#">MARCAS</a></li>
         </ul>
     </aside>
 
+    <!-- Menú horizontal (Solo visible en PC) -->
     <nav class="categories-nav">
         <ul class="categories-list">
             <li><a href="#">AUDIFONOS</a></li>
             <li><a href="#">BELLEZA & SALUD</a></li>
             <li><a href="#">CARGADOR, POWERBANK</a></li>
             <li><a href="#">CASE & COVERS</a></li>
-            <li><a href="#">MEMORIA & ALMACENAMIENTO</a></li>
-            <li><a href="#">ROCK, BASEUS, USAMS</a></li>
-            <li><a href="#">TECLADO, ACC DE COMPUTO</a></li>
+            <li><a href="#">MEMORIA & ALM.</a></li>
             <li><a href="#">MARCAS</a></li>
         </ul>
     </nav>
 
+    <!-- ==========================================
+         4. CONTENIDO PRINCIPAL
+         ========================================== -->
     <main>
-        
+
+        <!-- 4.1. Banner Principal (Hero) -->
         <section class="hero-section">
             <div class="swiper hero-swiper">
                 <div class="swiper-wrapper">
-                    
+                    <!-- Slide 1 -->
                     <div class="swiper-slide">
                         <div class="hero-slide-content">
-                            <img src="img/iphone17pro.png" alt="iPhone 17 PRO" class="hero-bg-img">
-                            
+                            <img src="img/iphone17pro.png" alt="iPhone 17" class="hero-bg-img">
                             <div class="hero-overlay"></div>
-                            
                             <div class="hero-text">
                                 <h2>iPhone 17 PRO</h2>
                                 <p>Descubre el nuevo nivel de poder.</p>
                             </div>
                         </div>
                     </div>
-
+                    <!-- Slide 2 -->
                     <div class="swiper-slide">
                         <div class="hero-slide-content">
-                            <img src="img/macbookairm3.png" alt="MacBook Air M3" class="hero-bg-img">
-                            
+                            <img src="img/macbookairm3.png" alt="MacBook" class="hero-bg-img">
                             <div class="hero-overlay"></div>
-                            
                             <div class="hero-text">
                                 <h2>MacBook Air M3</h2>
                                 <p>Ligera. Veloz. Impresionante.</p>
                             </div>
                         </div>
                     </div>
-
                 </div>
                 <div class="swiper-button-next hero-next"></div>
                 <div class="swiper-button-prev hero-prev"></div>
@@ -144,25 +157,20 @@
             </div>
         </section>
 
+        <!-- 4.2. Carrusel de Categorías (RESTAURADO Y MÁS GRANDE) -->
         <section class="categories-section">
             <div class="container">
                 <h2 class="section-title">Ver todos los productos.</h2>
-
                 <div class="categories-carousel-wrapper">
                     <div class="swiper categories-swiper">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide cat-slide">
-                                <a href="#" class="category-card">
-                                    <div class="cat-img-placeholder">[Img]</div>
-                                    <h3>AMAZON & GOOGLE</h3>
-                                    <p>Desde S/249.90</p>
-                                </a>
-                            </div>
+
+                            <!-- Cada tarjeta es un enlace agrupado en un slide -->
                             <div class="swiper-slide cat-slide">
                                 <a href="#" class="category-card">
                                     <div class="cat-img-placeholder">[Img]</div>
                                     <h3>APPLE</h3>
-                                    <p>Desde S/469</p>
+                                    <p>Desde S/469.00</p>
                                 </a>
                             </div>
                             <div class="swiper-slide cat-slide">
@@ -175,115 +183,281 @@
                             <div class="swiper-slide cat-slide">
                                 <a href="#" class="category-card">
                                     <div class="cat-img-placeholder">[Img]</div>
-                                    <h3>BELLEZA & SALUD</h3>
-                                    <p>Desde S/189.90</p>
+                                    <h3>CARGADORES</h3>
+                                    <p>Desde S/45.00</p>
                                 </a>
                             </div>
                             <div class="swiper-slide cat-slide">
                                 <a href="#" class="category-card">
                                     <div class="cat-img-placeholder">[Img]</div>
-                                    <h3>CARGADOR, PB</h3>
-                                    <p>Desde S/18</p>
-                                </a>
-                            </div>
-                            <div class="swiper-slide cat-slide">
-                                <a href="#" class="category-card">
-                                    <div class="cat-img-placeholder">[Img]</div>
-                                    <h3>CASE & COVERS</h3>
+                                    <h3>CASES</h3>
                                     <p>Desde S/29.90</p>
                                 </a>
                             </div>
+                            <div class="swiper-slide cat-slide">
+                                <a href="#" class="category-card">
+                                    <div class="cat-img-placeholder">[Img]</div>
+                                    <h3>BELLEZA & SALUD</h3>
+                                    <p>Desde S/120.00</p>
+                                </a>
+                            </div>
+                            <div class="swiper-slide cat-slide">
+                                <a href="#" class="category-card">
+                                    <div class="cat-img-placeholder">[Img]</div>
+                                    <h3>SMART HOME</h3>
+                                    <p>Desde S/99.00</p>
+                                </a>
+                            </div>
+
                         </div>
                     </div>
+                    <!-- Flechas de navegación para categorías -->
                     <div class="swiper-button-prev cat-prev"></div>
                     <div class="swiper-button-next cat-next"></div>
                 </div>
             </div>
         </section>
 
+        <!-- 4.3. Carrusel de Novedades (NUEVO CARRUSEL INFINITO CON 10 PRODUCTOS) -->
         <section class="products-section">
             <div class="container">
                 <h2 class="section-title">Echa un vistazo a las novedades.</h2>
 
-                <div class="products-grid">
-                    <div class="product-card">
-                        <div class="discount-badge">-30%</div>
-                        <div class="prod-img-placeholder">[Img Prod 1]</div>
-                        <h4 class="prod-title">Adaptador Apple Carga Rápida 20W USB-C</h4>
-                        <div class="prod-prices">
-                            <span class="old-price">S/129.00</span>
-                            <span class="new-price">S/89.90</span>
-                        </div>
-                        <button class="btn-add-cart"><i class="fa-solid fa-cart-plus"></i> Agregar</button>
-                    </div>
+                <div class="products-carousel-wrapper">
+                    <div class="swiper products-swiper">
+                        <div class="swiper-wrapper">
 
-                    <div class="product-card">
-                        <div class="discount-badge">-15%</div>
-                        <div class="prod-img-placeholder">[Img Prod 2]</div>
-                        <h4 class="prod-title">Audífonos Inalámbricos Bluetooth 5.3</h4>
-                        <div class="prod-prices">
-                            <span class="old-price">S/99.90</span>
-                            <span class="new-price">S/84.90</span>
-                        </div>
-                        <button class="btn-add-cart"><i class="fa-solid fa-cart-plus"></i> Agregar</button>
-                    </div>
+                            <!-- Producto 1 -->
+                            <div class="swiper-slide prod-slide">
+                                <div class="product-card">
+                                    <div class="discount-badge">-30%</div>
+                                    <div class="prod-img-placeholder">[Img Prod 1]</div>
+                                    <h4 class="prod-title">Adaptador Apple Carga Rápida 20W USB-C</h4>
+                                    <div class="prod-prices"><span class="old-price">S/129.00</span><span
+                                            class="new-price">S/89.90</span></div>
+                                    <button class="btn-add-cart"><i class="fa-solid fa-cart-plus"></i> Agregar</button>
+                                </div>
+                            </div>
 
-                    <div class="product-card">
-                        <div class="prod-img-placeholder">[Img Prod 3]</div>
-                        <h4 class="prod-title">Funda de Silicona Magnética iPhone 15</h4>
-                        <div class="prod-prices">
-                            <span class="new-price">S/45.00</span>
-                        </div>
-                        <button class="btn-add-cart"><i class="fa-solid fa-cart-plus"></i> Agregar</button>
-                    </div>
+                            <!-- Producto 2 -->
+                            <div class="swiper-slide prod-slide">
+                                <div class="product-card">
+                                    <div class="discount-badge">-15%</div>
+                                    <div class="prod-img-placeholder">[Img Prod 2]</div>
+                                    <h4 class="prod-title">Audífonos Inalámbricos Bluetooth 5.3</h4>
+                                    <div class="prod-prices"><span class="old-price">S/99.90</span><span
+                                            class="new-price">S/84.90</span></div>
+                                    <button class="btn-add-cart"><i class="fa-solid fa-cart-plus"></i> Agregar</button>
+                                </div>
+                            </div>
 
-                    <div class="product-card">
-                        <div class="discount-badge">-40%</div>
-                        <div class="prod-img-placeholder">[Img Prod 4]</div>
-                        <h4 class="prod-title">Powerbank 10000mAh Carga Súper Rápida</h4>
-                        <div class="prod-prices">
-                            <span class="old-price">S/150.00</span>
-                            <span class="new-price">S/89.90</span>
+                            <!-- Producto 3 -->
+                            <div class="swiper-slide prod-slide">
+                                <div class="product-card">
+                                    <div class="prod-img-placeholder">[Img Prod 3]</div>
+                                    <h4 class="prod-title">Funda de Silicona Magnética iPhone 15</h4>
+                                    <div class="prod-prices"><span class="new-price">S/45.00</span></div>
+                                    <button class="btn-add-cart"><i class="fa-solid fa-cart-plus"></i> Agregar</button>
+                                </div>
+                            </div>
+
+                            <!-- Producto 4 -->
+                            <div class="swiper-slide prod-slide">
+                                <div class="product-card">
+                                    <div class="discount-badge">-40%</div>
+                                    <div class="prod-img-placeholder">[Img Prod 4]</div>
+                                    <h4 class="prod-title">Powerbank 10000mAh Carga Súper Rápida</h4>
+                                    <div class="prod-prices"><span class="old-price">S/150.00</span><span
+                                            class="new-price">S/89.90</span></div>
+                                    <button class="btn-add-cart"><i class="fa-solid fa-cart-plus"></i> Agregar</button>
+                                </div>
+                            </div>
+
+                            <!-- Producto 5 -->
+                            <div class="swiper-slide prod-slide">
+                                <div class="product-card">
+                                    <div class="prod-img-placeholder">[Img Prod 5]</div>
+                                    <h4 class="prod-title">Cable USB-C a Lightning Apple 1 Metro</h4>
+                                    <div class="prod-prices"><span class="new-price">S/79.00</span></div>
+                                    <button class="btn-add-cart"><i class="fa-solid fa-cart-plus"></i> Agregar</button>
+                                </div>
+                            </div>
+
+                            <!-- Producto 6 -->
+                            <div class="swiper-slide prod-slide">
+                                <div class="product-card">
+                                    <div class="discount-badge">-10%</div>
+                                    <div class="prod-img-placeholder">[Img Prod 6]</div>
+                                    <h4 class="prod-title">Apple AirPods Pro (2da Generación)</h4>
+                                    <div class="prod-prices"><span class="old-price">S/1100.00</span><span
+                                            class="new-price">S/990.00</span></div>
+                                    <button class="btn-add-cart"><i class="fa-solid fa-cart-plus"></i> Agregar</button>
+                                </div>
+                            </div>
+
+                            <!-- Producto 7 -->
+                            <div class="swiper-slide prod-slide">
+                                <div class="product-card">
+                                    <div class="prod-img-placeholder">[Img Prod 7]</div>
+                                    <h4 class="prod-title">Baseus Soporte de Auto Magnético</h4>
+                                    <div class="prod-prices"><span class="new-price">S/35.00</span></div>
+                                    <button class="btn-add-cart"><i class="fa-solid fa-cart-plus"></i> Agregar</button>
+                                </div>
+                            </div>
+
+                            <!-- Producto 8 -->
+                            <div class="swiper-slide prod-slide">
+                                <div class="product-card">
+                                    <div class="discount-badge">-50%</div>
+                                    <div class="prod-img-placeholder">[Img Prod 8]</div>
+                                    <h4 class="prod-title">Mica de Vidrio Templado iPhone 14 Pro Max</h4>
+                                    <div class="prod-prices"><span class="old-price">S/40.00</span><span
+                                            class="new-price">S/20.00</span></div>
+                                    <button class="btn-add-cart"><i class="fa-solid fa-cart-plus"></i> Agregar</button>
+                                </div>
+                            </div>
+
+                            <!-- Producto 9 -->
+                            <div class="swiper-slide prod-slide">
+                                <div class="product-card">
+                                    <div class="prod-img-placeholder">[Img Prod 9]</div>
+                                    <h4 class="prod-title">Cargador Inalámbrico MagSafe Compatible</h4>
+                                    <div class="prod-prices"><span class="new-price">S/65.00</span></div>
+                                    <button class="btn-add-cart"><i class="fa-solid fa-cart-plus"></i> Agregar</button>
+                                </div>
+                            </div>
+
+                            <!-- Producto 10 -->
+                            <div class="swiper-slide prod-slide">
+                                <div class="product-card">
+                                    <div class="discount-badge">-20%</div>
+                                    <div class="prod-img-placeholder">[Img Prod 10]</div>
+                                    <h4 class="prod-title">Smartwatch Reloj Inteligente Deportivo IP68</h4>
+                                    <div class="prod-prices"><span class="old-price">S/199.00</span><span
+                                            class="new-price">S/159.00</span></div>
+                                    <button class="btn-add-cart"><i class="fa-solid fa-cart-plus"></i> Agregar</button>
+                                </div>
+                            </div>
+
                         </div>
-                        <button class="btn-add-cart"><i class="fa-solid fa-cart-plus"></i> Agregar</button>
                     </div>
+                    <!-- Flechas de navegación para productos -->
+                    <div class="swiper-button-prev prod-prev"></div>
+                    <div class="swiper-button-next prod-next"></div>
                 </div>
+
             </div>
         </section>
 
-        <section class="promo-banners">
-            <div class="container">
-                <div class="banners-grid">
-                    <a href="#" class="promo-banner dark-banner">
-                        <div class="promo-content">
-                            <h3>TITANIO</h3>
-                            <h2>iPhone 15 Pro</h2>
-                            <span class="btn-outline">Comprar ahora</span>
-                        </div>
-                        <div class="promo-img-placeholder">[Img iPhone]</div>
-                    </a>
-
-                    <a href="#" class="promo-banner light-banner">
-                        <div class="promo-content">
-                            <h3>NUEVOS</h3>
-                            <h2>Audífonos Inalámbricos</h2>
-                            <span class="btn-outline">Ver catálogo</span>
-                        </div>
-                        <div class="promo-img-placeholder">[Img Audífonos]</div>
-                    </a>
-                </div>
-            </div>
-        </section>
     </main>
 
-    <a href="https://wa.me/51946330862" class="floating-btn whatsapp-btn" target="_blank">
-        <i class="fa-brands fa-whatsapp"></i>
-    </a>
-    <button class="floating-btn cart-float-btn">
-        <i class="fa-solid fa-bag-shopping"></i>
-        <span class="cart-badge-float">0</span>
-    </button>
+    <!-- ==========================================
+         5. PIE DE PÁGINA (FOOTER)
+         ========================================== -->
+    <footer class="site-footer">
 
+        <!-- Métodos de pago -->
+        <div class="footer-payments">
+            <div class="container">
+                <h4>Aceptamos Tarjetas de Crédito, Débito, Pagos vía App y Transferencia Bancaria</h4>
+                <div class="payment-icons">
+                    <i class="fa-brands fa-cc-visa"></i>
+                    <i class="fa-brands fa-cc-mastercard"></i>
+                    <i class="fa-brands fa-cc-amex"></i>
+                    <span class="pay-badge">Yape</span>
+                    <span class="pay-badge plin">Plin</span>
+                    <span class="pay-badge bank"><i class="fa-solid fa-building-columns"></i> Transf.</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Enlaces principales del footer -->
+        <div class="footer-main">
+            <div class="container footer-grid">
+
+                <div class="footer-col brand-col">
+                    <img src="img/logotipo.png" alt="My Phone Logo" class="footer-logo">
+                    <ul class="contact-info">
+                        <li><i class="fa-solid fa-phone"></i>
+                            <div><span>Contact Center</span><strong>+51 946 330 862</strong></div>
+                        </li>
+                        <li><i class="fa-solid fa-envelope"></i>
+                            <div><span>Escríbenos a</span><strong>ventas@myphone.pe</strong></div>
+                        </li>
+                        <li><i class="fa-solid fa-location-dot"></i>
+                            <div><span>Ubicación</span><strong>Lima, Perú</strong></div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Productos</h4>
+                    <ul>
+                        <li><a href="#">Apple</a></li>
+                        <li><a href="#">Audífonos</a></li>
+                        <li><a href="#">Cargador, Powerbank</a></li>
+                        <li><a href="#">Case & Covers</a></li>
+                        <li><a href="#">Teclado, Accesorios</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Información</h4>
+                    <ul>
+                        <li><a href="#">Políticas de privacidad</a></li>
+                        <li><a href="#">Términos y condiciones</a></li>
+                        <li><a href="#">Condiciones de entrega</a></li>
+                        <li><a href="#">Cambios y devoluciones</a></li>
+                        <li><a href="#">Preguntas frecuentes</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Nosotros</h4>
+                    <ul>
+                        <li><a href="#">¿Quiénes somos?</a></li>
+                        <li><a href="#">Contáctanos</a></li>
+                    </ul>
+                    <a href="#" class="reclamaciones-btn">
+                        <i class="fa-solid fa-book"></i>
+                        <span>Libro de<br>Reclamaciones</span>
+                    </a>
+                </div>
+
+                <div class="footer-col newsletter-col">
+                    <h4>Boletín</h4>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Correo electrónico" required>
+                        <button type="submit">Suscribirme <i class="fa-solid fa-arrow-right"></i></button>
+                    </form>
+                    <h4 class="mt-20">Síguenos en</h4>
+                    <div class="social-icons">
+                        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container bottom-flex">
+                <p>My Phone © 2026. Todos los derechos reservados.</p>
+                <p>Desarrollado por <strong>Medina</strong></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==========================================
+         BOTONES FLOTANTES
+         ========================================== -->
+    <a href="https://wa.me/51946330862" class="floating-btn whatsapp-btn" target="_blank"><i
+            class="fa-brands fa-whatsapp"></i></a>
+    <button class="floating-btn cart-float-btn"><i class="fa-solid fa-bag-shopping"></i><span
+            class="cart-badge-float">0</span></button>
+
+    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="js/script.js"></script>
 </body>
