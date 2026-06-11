@@ -12,23 +12,21 @@
     --bg-black: #000000;
 }
 
-/* Reset universal: elimina márgenes por defecto y define la fuente de Apple/Sistemas Modernos */
+/* Reset universal: elimina márgenes por defecto */
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-    /* Asegura que el padding no aumente el tamaño de los elementos */
+    box-sizing: border-box; /* Asegura que el padding no aumente el tamaño de los elementos */
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
 }
 
 body {
     background-color: #fff;
     color: var(--text-dark);
-    overflow-x: hidden;
-    /* Evita que el contenido desborde horizontalmente creando scroll */
+    overflow-x: hidden; /* Evita que el contenido desborde horizontalmente creando scroll */
 }
 
-/* Clase dinámica que se añade mediante JS para bloquear el scroll de la página web */
+/* Clase dinámica que se añade mediante JS para bloquear el scroll de la web */
 body.no-scroll {
     overflow: hidden;
 }
@@ -42,10 +40,8 @@ a {
 /* Contenedor central que limita el ancho máximo en pantallas muy grandes */
 .container {
     max-width: 1400px;
-    margin: 0 auto;
-    /* Centra el contenedor */
-    padding: 0 20px;
-    /* Evita que el contenido toque los bordes del dispositivo */
+    margin: 0 auto; /* Centra el contenedor */
+    padding: 0 20px; /* Evita que el contenido toque los bordes del dispositivo */
 }
 
 .section-title {
@@ -56,7 +52,7 @@ a {
 }
 
 /* =========================================
-   2. LOADER (ANIMACIÓN INICIAL 3D)
+   2. PANTALLA DE CARGA (LOADER MANZANA 3D)
    ========================================= */
 /* Contenedor negro que ocupa el 100% de la pantalla */
 #loader-screen {
@@ -70,11 +66,9 @@ a {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    z-index: 99999;
-    /* Z-index alto para garantizar que tape TODO */
+    z-index: 99999; /* Lo mantiene por encima de TODO */
     cursor: pointer;
-    transition: opacity 0.8s ease;
-    /* Transición suave al desaparecer */
+    transition: opacity 0.8s ease; /* Transición suave al desaparecer */
 }
 
 .loader-content {
@@ -99,11 +93,9 @@ a {
     letter-spacing: 2px;
     margin-bottom: 30px;
     opacity: 0;
-    transform: translateY(-20px);
-    /* Efecto de bajada inicial */
+    transform: translateY(-20px); /* Efecto de bajada inicial */
     transition: opacity 1s ease, transform 1s ease;
-    text-align: center;
-    /* Garantiza el centrado en múltiples líneas */
+    text-align: center; /* Garantiza el centrado en múltiples líneas */
     line-height: 1.3;
     padding: 0 15px;
 }
@@ -131,11 +123,10 @@ a {
     z-index: 2;
 }
 
-/* Efecto visual de reflejo en cristal */
+/* Voltea y difumina el icono para crear la ilusión de reflejo en cristal */
 .apple-wrapper.reflection {
     top: 98px;
-    transform: scaleY(-1);
-    /* Voltea el elemento verticalmente */
+    transform: scaleY(-1); /* Voltea el elemento verticalmente */
     opacity: 0.25;
     z-index: 1;
     /* Difumina el reflejo hacia abajo (Mask-image) */
@@ -154,18 +145,12 @@ a {
 .rotate-logo {
     display: inline-block;
     animation: spin3D 3.5s linear infinite;
-    perspective: 1000px;
-    /* Da profundidad 3D al giro */
+    perspective: 1000px; /* Da profundidad 3D al giro */
 }
 
 @keyframes spin3D {
-    0% {
-        transform: rotateY(0deg);
-    }
-
-    100% {
-        transform: rotateY(360deg);
-    }
+    0% { transform: rotateY(0deg); }
+    100% { transform: rotateY(360deg); }
 }
 
 /* Botón de texto para indicar que se debe hacer clic */
@@ -187,15 +172,8 @@ a {
 }
 
 @keyframes pulseText {
-
-    0%,
-    100% {
-        opacity: 0.3;
-    }
-
-    50% {
-        opacity: 0.8;
-    }
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.8; }
 }
 
 /* =========================================
@@ -241,7 +219,7 @@ a {
     align-items: center;
 }
 
-/* Controla el tamaño máximo del logo. object-fit previene que la imagen se deforme */
+/* Controla el tamaño máximo del logo. */
 .site-logo {
     height: 150px;
     width: auto;
@@ -255,6 +233,7 @@ a {
     opacity: 0.9;
 }
 
+/* Botón del Menú (Visible junto al logo en móviles) */
 .btn-menu-outline {
     background: transparent;
     border: 1px solid var(--border-color);
@@ -275,8 +254,7 @@ a {
 }
 
 .search-section {
-    flex: 1;
-    /* El buscador intenta ocupar todo el espacio libre al medio */
+    flex: 1; /* El buscador intenta ocupar todo el espacio libre al medio */
     max-width: 600px;
 }
 
@@ -394,36 +372,68 @@ a {
 
 .hero-swiper {
     width: 100%;
-    height: 500px;
-    /* Altura estándar en PC */
+    height: 500px; /* Altura estándar del banner en PC */
 }
 
-/* Div interno que centra vertical y horizontalmente los textos/imágenes */
-.hero-placeholder {
+/* --- NUEVO: CAPAS PARA IMAGEN Y TEXTO --- */
+
+/* 1. Contenedor Maestro: Alinea todo al centro y es relativo para que las capas interiores se posicionen sobre él */
+.hero-slide-content {
+    position: relative;
     width: 100%;
     height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    color: white;
+    overflow: hidden; /* Evita que la imagen se salga de los bordes */
 }
 
-.dark-bg {
-    background-color: #111;
+/* 2. Capa de Fondo (Imagen): 'object-fit: cover' es la magia que hace que rellene el espacio sin deformarse */
+.hero-bg-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1; /* Nivel base */
 }
 
-.light-bg {
-    background-color: #f5f5f7;
-    color: #333;
+/* 3. Capa Overlay: Oscurece un poco la imagen para garantizar que el texto se lea siempre */
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4); /* 40% de opacidad negra */
+    z-index: 2; /* Encima de la imagen */
 }
 
-.hero-placeholder h2 {
-    font-size: 40px;
+/* 4. Capa Frontal (Texto): Por encima del overlay, con sombras para mayor legibilidad */
+.hero-text {
+    position: relative;
+    z-index: 3; /* Nivel más alto */
+    color: #fff;
+    text-align: center;
+    padding: 0 20px;
+}
+
+.hero-text h2 {
+    font-size: 45px;
     font-weight: 900;
     margin-bottom: 10px;
-    text-align: center;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.5); /* Sombra para que destaque sobre la foto */
 }
+
+.hero-text p {
+    font-size: 18px;
+    font-weight: 500;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+}
+
+/* --- Fin Capas Imagen/Texto --- */
 
 /* Edición de estilos predeterminados de las flechas y puntos de Swiper.js */
 .swiper-button-next.hero-next,
@@ -457,11 +467,10 @@ a {
 
 .categories-carousel-wrapper {
     position: relative;
-    padding: 0 40px;
-    /* Deja espacio para ubicar las flechas fuera del carrusel */
+    padding: 0 40px; /* Deja espacio para ubicar las flechas fuera del carrusel */
 }
 
-/* "width: auto" es crítico aquí para que Swiper recalcule según el contenido */
+/* "width: auto" es crítico aquí para que Swiper recalcule el tamaño de tarjeta según el contenido */
 .cat-slide {
     width: auto;
 }
@@ -508,7 +517,7 @@ a {
     color: #888;
 }
 
-/* Estilos de botones de navegación redondos */
+/* Estilos de botones de navegación redondos del carrusel de categorías */
 .swiper-button-prev.cat-prev,
 .swiper-button-next.cat-next {
     background: #fff;
@@ -534,7 +543,7 @@ a {
     background-color: #fff;
 }
 
-/* El CSS Grid organiza las tarjetas. Minmax indica que mínimo medirán 240px, y máximo el espacio disponible */
+/* El CSS Grid organiza las tarjetas. Auto-fill adapta la cantidad según el tamaño de la pantalla */
 .products-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
@@ -582,7 +591,7 @@ a {
     font-size: 14px;
 }
 
-/* El flex-grow 1 empuja los botones hacia el final, manteniendo alineados los botones así el texto cambie de tamaño */
+/* flex-grow 1 empuja los botones hacia abajo, alineando todos los botones de la misma fila */
 .prod-title {
     font-size: 15px;
     font-weight: 600;
@@ -745,6 +754,7 @@ a {
     transform: scale(1.1);
 }
 
+/* Estilo personalizado de WhatsApp según lo solicitado */
 .whatsapp-btn {
     left: 30px;
     background-color: #075d27;
@@ -778,9 +788,9 @@ a {
 }
 
 /* =========================================
-   10. MENÚ LATERAL (OFF-CANVAS)
+   10. MENÚ LATERAL (OFF-CANVAS PARA MÓVILES)
    ========================================= */
-/* La capa que oscurece todo cuando abres el menú */
+/* La capa oscura que oscurece el sitio web al abrir el menú */
 .menu-overlay {
     position: fixed;
     top: 0;
@@ -799,7 +809,7 @@ a {
     visibility: visible;
 }
 
-/* El bloque blanco que entra desde la izquierda (-100%) */
+/* El cajón blanco de menú que entra por la izquierda (-100%) */
 .side-menu {
     position: fixed;
     top: 0;
@@ -815,7 +825,7 @@ a {
     flex-direction: column;
 }
 
-/* Al agregar esta clase con JS, el menú se posiciona a la vista (0) */
+/* Al agregar esta clase por JS, el menú vuelve a su posición 0 (visible) */
 .side-menu.open {
     transform: translateX(0);
 }
@@ -878,30 +888,27 @@ a {
 }
 
 /* =========================================
-   11. RESPONSIVE DESIGN (Media Queries)
+   11. RESPONSIVE DESIGN (Adaptación Móvil y Tablets)
    ========================================= */
 
-/* Dispositivos Medianos (Tablets: 992px y menos) */
+/* Reglas aplicadas cuando la pantalla mide 992px o menos (Tablets) */
 @media (max-width: 992px) {
     .header-container {
-        flex-wrap: wrap;
+        flex-wrap: wrap; /* Permite que los elementos pasen a la siguiente fila */
     }
-
     .search-section {
-        order: 3;
-        /* Envía el buscador a la línea inferior de la cabecera */
+        order: 3; /* Envía el buscador a la línea inferior de la cabecera */
         width: 100%;
         margin-top: 10px;
     }
-
     .logo-section {
         flex: 1;
     }
 }
 
-/* Dispositivos Pequeños (Celulares: 768px y menos) */
+/* Reglas aplicadas cuando la pantalla mide 768px o menos (Celulares Múltiples) */
 @media (max-width: 768px) {
-
+    
     /* Mantiene el texto de bienvenida elegante y evita que se corte */
     #welcome-msg {
         font-size: 1.6rem;
@@ -910,13 +917,14 @@ a {
         padding: 0 15px;
     }
 
+    /* Top bar más pequeña para no robar espacio en pantallas chicas */
     .top-bar {
         font-size: 9px;
         padding: 10px 5px;
     }
 
     /* SISTEMA DE GRILLA (Grid Layout) PARA ORDENAR LA CABECERA
-       Crea una estructura donde el Menú va a la izquierda, Logo al centro, Iconos derecha,
+       Crea una estructura donde el Menú va a la izquierda, Logo al centro, Iconos a la derecha,
        y el buscador abarca toda la segunda fila */
     .header-container {
         display: grid;
@@ -931,7 +939,7 @@ a {
 
     /* Desempaqueta el div del logo para que sus hijos (botón menú y logo) interactúen con el Grid padre */
     .logo-section {
-        display: contents;
+        display: contents; 
     }
 
     /* Asignamos las áreas correspondientes según el Grid creado arriba */
@@ -944,13 +952,12 @@ a {
 
     .logo-link {
         grid-area: logo;
-        justify-self: center;
-        /* Obliga al logo a estar estrictamente en el centro */
+        justify-self: center; /* Obliga al logo a estar estrictamente en el centro */
     }
 
     /* El logo en móvil es suficientemente grande para destacar sin romper el grid */
     .site-logo {
-        height: 65px;
+        height: 65px; 
     }
 
     .icons-section {
@@ -965,85 +972,76 @@ a {
         width: 100%;
     }
 
-    /* Ocultamos textos innecesarios en móvil para ahorrar espacio */
-    .btn-login span {
-        display: none;
-    }
-
-    .btn-login {
-        padding: 8px 12px;
-    }
-
+    /* Ocultamos el texto 'Iniciar sesión' en móvil para ahorrar espacio (dejamos solo el icono) */
+    .btn-login span { display: none; }
+    .btn-login { padding: 8px 12px; }
+    
     /* En móvil ocultamos la barra horizontal y dependemos 100% del menú lateral */
     .categories-nav {
         display: none;
     }
 
-    /* Ajustamos tamaños de Slider para que no sea tan alto en vertical */
+    /* Ajustes del Banner Principal para móviles */
     .hero-swiper {
         height: 350px;
     }
-
-    .hero-placeholder h2 {
-        font-size: 28px;
-        text-align: center;
+    
+    .hero-text h2 {
+        font-size: 30px; /* Letra un poco más pequeña para que quepa bien en celular */
+    }
+    .hero-text p {
+        font-size: 15px;
     }
 
+    /* Reducción de Títulos de seccion generales */
     .section-title {
         font-size: 22px;
         text-align: center;
     }
 
-    /* Controla que en celulares siempre existan exactamente 2 productos lado a lado */
+    /* MAGIA GRID: Obliga a mostrar exactamente 2 tarjetas de producto por fila en celular */
     .products-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 10px;
     }
-
+    
     .product-card {
         padding: 15px;
     }
-
     .prod-img-placeholder {
         height: 120px;
     }
-
     .prod-title {
         font-size: 13px;
         margin-bottom: 10px;
     }
-
     .new-price {
         font-size: 16px;
     }
-
     .btn-add-cart {
         padding: 10px;
         font-size: 12px;
     }
 
-    /* Convierte los banners horizontales a bloques verticales amigables a touch */
+    /* Banners Dobles: Cambia a diseño apilado uno encima de otro y centra el texto */
     .promo-banner {
         flex-direction: column;
         text-align: center;
         gap: 20px;
     }
-
     .promo-img-placeholder {
         margin-top: 10px;
     }
-
     .promo-content h2 {
         font-size: 22px;
         text-align: center;
     }
 
-    /* Ajusta el carrusel de categorías reduciendo los márgenes */
+    /* Ajuste de tarjetas de categorías del carrusel para móviles */
     .category-card {
         min-width: 130px;
         padding: 15px 10px;
     }
-
     .cat-img-placeholder {
         height: 80px;
     }

@@ -2,9 +2,9 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     /* ===================================================
-       1. LÓGICA DEL LOADER (Manzana 3D)
+       1. LÓGICA DEL LOADER (Pantalla de inicio con Manzana 3D)
        =================================================== */
-    // Localizamos los elementos visuales del loader en el HTML (Buenas prácticas: guardar en constantes)
+    // Capturamos los elementos visuales del loader mediante sus IDs en el HTML
     const loader = document.getElementById('loader-screen');
     const welcomeMsg = document.getElementById('welcome-msg');
     const continueMsg = document.getElementById('continue-msg');
@@ -12,24 +12,24 @@ document.addEventListener('DOMContentLoaded', () => {
     // Validación de seguridad para no ejecutar código si el loader no está en la página
     if(loader) {
         
-        // Temporizador 1: Activa la animación del mensaje de bienvenida al medio segundo
+        // Temporizador 1: Activa la animación del mensaje de bienvenida al medio segundo (500ms)
         setTimeout(() => {
             if(welcomeMsg) welcomeMsg.classList.add('show');
         }, 500);
 
-        // Temporizador 2: Muestra la instrucción de hacer clic a los 3 segundos
+        // Temporizador 2: Muestra la instrucción de "DALE CLIC" a los 3 segundos
         setTimeout(() => {
             if(continueMsg) continueMsg.classList.add('show');
         }, 3000);
 
-        // Evento Click: Desvanece la pantalla negra y devuelve la funcionalidad a la página
+        // Evento Click: Desvanece la pantalla negra cuando el usuario hace clic
         loader.addEventListener('click', () => {
             loader.style.opacity = '0'; // Dispara la transición del CSS
             
-            // Espera a que termine la opacidad antes de quitarlo completamente del flujo (display: none)
+            // Espera a que termine la opacidad (800ms) antes de quitar el contenedor y devolver el scroll
             setTimeout(() => {
                 loader.style.display = 'none';
-                document.body.classList.remove('no-scroll'); // Permite hacer scroll libremente
+                document.body.classList.remove('no-scroll'); // Devuelve el scroll natural
             }, 800);
         });
     }
@@ -40,9 +40,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Busca si la clase '.hero-swiper' existe antes de inicializar la librería
     if (document.querySelector('.hero-swiper')) {
         const heroSwiper = new Swiper('.hero-swiper', {
-            loop: true, // Vuelve al inicio cuando llega a la última imagen
+            loop: true, // Carrusel infinito (vuelve al inicio)
             autoplay: {
-                delay: 4000, // Transición automática cada 4000 ms (4s)
+                delay: 4000, // Cambio automático cada 4 segundos
                 disableOnInteraction: false, // Evita que se pause si el usuario toca la pantalla
             },
             pagination: {
@@ -50,10 +50,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 clickable: true,
             },
             navigation: {
-                nextEl: '.hero-next', // Asocia las flechas a las funciones de retroceder/avanzar
-                prevEl: '.hero-prev',
+                nextEl: '.hero-next', // Asocia flecha derecha
+                prevEl: '.hero-prev', // Asocia flecha izquierda
             },
-            effect: 'slide', // Efecto nativo estándar
+            effect: 'slide', // Efecto nativo de deslizamiento
             speed: 600, // Duración de la animación del cambio (600ms)
         });
     }
@@ -61,6 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
     /* ===================================================
        3. INICIALIZAR CARRUSEL DE CATEGORÍAS CON SWIPER
        =================================================== */
+    // Inicia el slider más pequeño para las tarjetas de categorías
     if (document.querySelector('.categories-swiper')) {
         const catSwiper = new Swiper('.categories-swiper', {
             slidesPerView: 'auto', // Permite que cada tarjeta tenga un ancho propio dependiente del CSS
@@ -74,34 +75,36 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /* ===================================================
-       4. LÓGICA DEL MENÚ LATERAL (OFF-CANVAS)
+       4. LÓGICA DEL MENÚ LATERAL (OFF-CANVAS PARA MÓVILES)
        =================================================== */
-    // Captura los controles para deslizar el menú en móviles
+    // Captura los controles necesarios para el menú móvil
     const openMenuBtn = document.getElementById('open-menu-btn');
     const closeMenuBtn = document.getElementById('close-menu-btn');
     const sideMenu = document.getElementById('side-menu');
     const menuOverlay = document.getElementById('menu-overlay');
 
+    // Valida que todos los elementos existan en el DOM
     if (openMenuBtn && closeMenuBtn && sideMenu && menuOverlay) {
         
-        // Método que inserta las clases para mostrar el bloque blanco y el fondo oscuro
+        // Función específica para abrir el menú lateral
         const openMenu = () => {
-            sideMenu.classList.add('open');
-            menuOverlay.classList.add('active');
-            document.body.style.overflow = 'hidden'; // Evita scroll de fondo tras abrir el menú
+            sideMenu.classList.add('open'); // Mueve el panel lateral a la vista (transform: translateX(0))
+            menuOverlay.classList.add('active'); // Muestra la capa oscura
+            document.body.style.overflow = 'hidden'; // Evita scroll de fondo mientras se navega el menú
         };
 
-        // Método que retira las clases para regresar al estado normal
+        // Función específica para cerrar el menú lateral
         const closeMenu = () => {
-            sideMenu.classList.remove('open');
-            menuOverlay.classList.remove('active');
-            document.body.style.overflow = 'auto'; // Restaura el scroll principal
+            sideMenu.classList.remove('open'); // Devuelve el panel a su escondite (-100%)
+            menuOverlay.classList.remove('active'); // Oculta la capa oscura
+            document.body.style.overflow = 'auto'; // Restaura el scroll natural de la web
         };
 
-        // Escucha los eventos "click" y dispara los métodos
+        // Asignación de los eventos "click" a los botones para ejecutar las funciones
         openMenuBtn.addEventListener('click', openMenu);
         closeMenuBtn.addEventListener('click', closeMenu);
-        // Si el usuario toca el fondo oscurecido, equivale a presionar "Cerrar"
+        
+        // Si el usuario hace clic fuera del menú (en lo oscuro), también ejecuta el cierre
         menuOverlay.addEventListener('click', closeMenu);
     }
 
