@@ -1,0 +1,828 @@
+/* =========================================
+   1. VARIABLES Y RESETEO
+   ========================================= */
+:root {
+    --primary-orange: #ff5722;
+    --primary-blue: #0066cc;
+    --bg-light-gray: #f5f5f7;
+    --text-dark: #222;
+    --text-gray: #666;
+    --border-color: #ddd;
+    --bg-black: #000000;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+body {
+    background-color: #fff;
+    color: var(--text-dark);
+    overflow-x: hidden;
+}
+
+body.no-scroll {
+    overflow: hidden;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.section-title {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 25px;
+    color: #333;
+}
+
+/* =========================================
+   2. PANTALLA DE CARGA (MANZANA Y REFLEJO)
+   ========================================= */
+#loader-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: var(--bg-black);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 99999;
+    cursor: pointer;
+    transition: opacity 0.8s ease;
+}
+
+.loader-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.metallic-text {
+    background: linear-gradient(145deg, #e6e6e6 0%, #999999 40%, #ffffff 60%, #737373 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+#welcome-msg {
+    font-size: 2rem;
+    font-weight: 300;
+    letter-spacing: 2px;
+    margin-bottom: 30px;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+#welcome-msg.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.apple-stage {
+    position: relative;
+    height: 110px;
+    width: 100px;
+    margin-bottom: 60px;
+}
+
+.apple-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    z-index: 2;
+}
+
+.apple-wrapper.reflection {
+    top: 98px;
+    transform: scaleY(-1);
+    opacity: 0.25;
+    z-index: 1;
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 70%);
+    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 70%);
+}
+
+.silver-apple {
+    font-size: 100px;
+    background: linear-gradient(145deg, #e6e6e6 0%, #999999 40%, #ffffff 60%, #737373 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.rotate-logo {
+    display: inline-block;
+    animation: spin3D 3.5s linear infinite;
+    perspective: 1000px;
+}
+
+@keyframes spin3D {
+    0% {
+        transform: rotateY(0deg);
+    }
+
+    100% {
+        transform: rotateY(360deg);
+    }
+}
+
+#continue-msg {
+    color: #888;
+    font-size: 0.75rem;
+    font-weight: 400;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+
+#continue-msg.show {
+    opacity: 0.7;
+    animation: pulseText 2.5s infinite ease-in-out;
+}
+
+@keyframes pulseText {
+
+    0%,
+    100% {
+        opacity: 0.3;
+    }
+
+    50% {
+        opacity: 0.8;
+    }
+}
+
+/* =========================================
+   3. CABECERA (TOP BAR, LOGO, BUSCADOR)
+   ========================================= */
+.top-bar {
+    background-color: #222;
+    color: #fff;
+    text-align: center;
+    padding: 8px 0;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.main-header {
+    border-bottom: 1px solid var(--border-color);
+    padding: 15px 0;
+}
+
+.header-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+}
+
+.logo-section {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.logo-link {
+    display: flex;
+    align-items: center;
+}
+
+.site-logo {
+    height: 150px;
+    width: auto;
+    object-fit: contain;
+    border-radius: 8px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.site-logo:hover {
+    transform: scale(1.05);
+    opacity: 0.9;
+}
+
+.btn-menu-outline {
+    background: transparent;
+    border: 1px solid var(--border-color);
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-size: 14px;
+    color: var(--text-gray);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s;
+}
+
+.btn-menu-outline:hover {
+    border-color: var(--text-dark);
+    color: var(--text-dark);
+}
+
+.search-section {
+    flex: 1;
+    max-width: 600px;
+}
+
+.search-box {
+    display: flex;
+    background-color: var(--bg-light-gray);
+    border-radius: 5px;
+    overflow: hidden;
+    padding: 2px;
+}
+
+.search-box input {
+    flex: 1;
+    border: none;
+    background: transparent;
+    padding: 12px 15px;
+    font-size: 14px;
+    outline: none;
+    color: var(--text-dark);
+}
+
+.search-box button {
+    background: transparent;
+    border: none;
+    padding: 0 15px;
+    color: var(--text-gray);
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.icons-section {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.btn-login {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid var(--border-color);
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-size: 14px;
+    color: var(--text-gray);
+    transition: all 0.3s;
+}
+
+.btn-login:hover {
+    border-color: var(--text-dark);
+    color: var(--text-dark);
+}
+
+.cart-icon {
+    position: relative;
+    font-size: 24px;
+    color: var(--text-dark);
+}
+
+.cart-badge {
+    position: absolute;
+    top: -5px;
+    right: -10px;
+    background-color: var(--primary-orange);
+    color: white;
+    font-size: 11px;
+    font-weight: bold;
+    width: 18px;
+    height: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+}
+
+/* =========================================
+   4. MENÚ DE CATEGORÍAS (Barra)
+   ========================================= */
+.categories-nav {
+    border-bottom: 1px solid var(--border-color);
+}
+
+.categories-list {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    overflow-x: auto;
+}
+
+.categories-list li a {
+    display: block;
+    padding: 15px 0;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-dark);
+    transition: color 0.3s;
+}
+
+.categories-list li a:hover {
+    color: var(--primary-orange);
+}
+
+/* =========================================
+   5. BANNER (HERO SWIPER)
+   ========================================= */
+.hero-section {
+    position: relative;
+    width: 100%;
+}
+
+.hero-swiper {
+    width: 100%;
+    height: 500px;
+}
+
+.hero-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.dark-bg {
+    background-color: #111;
+}
+
+.light-bg {
+    background-color: #f5f5f7;
+    color: #333;
+}
+
+.hero-placeholder h2 {
+    font-size: 40px;
+    font-weight: 900;
+    margin-bottom: 10px;
+}
+
+.swiper-button-next.hero-next,
+.swiper-button-prev.hero-prev {
+    color: rgba(255, 255, 255, 0.7);
+    transition: color 0.3s;
+}
+
+.swiper-button-next.hero-next:hover,
+.swiper-button-prev.hero-prev:hover {
+    color: #fff;
+}
+
+.swiper-pagination-bullet {
+    background: rgba(255, 255, 255, 0.5);
+    opacity: 1;
+}
+
+.swiper-pagination-bullet-active {
+    background: #fff;
+    transform: scale(1.2);
+}
+
+/* =========================================
+   6. CARRUSEL DE CATEGORÍAS
+   ========================================= */
+.categories-section {
+    padding: 50px 0;
+    background-color: #fafafa;
+}
+
+.categories-carousel-wrapper {
+    position: relative;
+    padding: 0 40px;
+}
+
+.cat-slide {
+    width: auto;
+}
+
+.category-card {
+    min-width: 160px;
+    max-width: 200px;
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px 10px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: block;
+}
+
+.category-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.cat-img-placeholder {
+    height: 100px;
+    background-color: #f0f0f0;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #aaa;
+    font-size: 14px;
+}
+
+.category-card h3 {
+    font-size: 12px;
+    font-weight: 800;
+    color: #333;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+}
+
+.category-card p {
+    font-size: 11px;
+    color: #888;
+}
+
+.swiper-button-prev.cat-prev,
+.swiper-button-next.cat-next {
+    background: #fff;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    color: #333;
+    margin-top: -20px;
+}
+
+.swiper-button-prev.cat-prev:after,
+.swiper-button-next.cat-next:after {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* =========================================
+   7. CUADRÍCULA DE PRODUCTOS
+   ========================================= */
+.products-section {
+    padding: 60px 0;
+    background-color: #fff;
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 25px;
+}
+
+.product-card {
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 12px;
+    padding: 20px;
+    position: relative;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.product-card:hover {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+    transform: translateY(-5px);
+}
+
+.discount-badge {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background-color: #e53935;
+    color: #fff;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 20px;
+    z-index: 2;
+}
+
+.prod-img-placeholder {
+    height: 200px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ccc;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+.prod-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 15px;
+    line-height: 1.4;
+    flex-grow: 1;
+}
+
+.prod-prices {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.old-price {
+    font-size: 13px;
+    color: #999;
+    text-decoration: line-through;
+}
+
+.new-price {
+    font-size: 18px;
+    font-weight: 800;
+    color: #e53935;
+}
+
+.btn-add-cart {
+    width: 100%;
+    background-color: var(--primary-blue);
+    color: #fff;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-add-cart:hover {
+    background-color: #005bb5;
+}
+
+/* =========================================
+   8. BANNERS PROMOCIONALES DOBLES
+   ========================================= */
+.promo-banners {
+    padding: 40px 0;
+    background-color: #fff;
+}
+
+.banners-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.promo-banner {
+    border-radius: 15px;
+    padding: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.promo-banner:hover {
+    transform: translateY(-5px);
+}
+
+.dark-banner {
+    background-color: #111;
+    color: #fff;
+}
+
+.light-banner {
+    background-color: #f5f5f7;
+    color: #333;
+}
+
+.promo-content h3 {
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+    opacity: 0.8;
+}
+
+.promo-content h2 {
+    font-size: 28px;
+    font-weight: 800;
+    margin-bottom: 20px;
+}
+
+.btn-outline {
+    display: inline-block;
+    padding: 10px 20px;
+    border: 2px solid #fff;
+    border-radius: 30px;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background 0.3s, color 0.3s;
+}
+
+.btn-outline:hover {
+    background: #fff;
+    color: #111;
+}
+
+.light-banner .btn-outline {
+    border-color: #333;
+    color: #333;
+}
+
+.light-banner .btn-outline:hover {
+    background: #333;
+    color: #fff;
+}
+
+.promo-img-placeholder {
+    width: 150px;
+    height: 150px;
+    background: rgba(128, 128, 128, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    font-size: 12px;
+    text-align: center;
+}
+
+/* =========================================
+   9. BOTONES FLOTANTES
+   ========================================= */
+.floating-btn {
+    position: fixed;
+    bottom: 30px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    z-index: 9999;
+    transition: transform 0.3s ease;
+    border: none;
+}
+
+.floating-btn:hover {
+    transform: scale(1.1);
+}
+
+.whatsapp-btn {
+    left: 30px;
+    background-color: #25d366;
+    color: #fff;
+}
+
+.cart-float-btn {
+    right: 30px;
+    background-color: #fff;
+    color: #333;
+    border-radius: 15px;
+}
+
+.cart-badge-float {
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    background-color: #ff3b30;
+    color: #fff;
+    font-size: 12px;
+    font-weight: bold;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+}
+
+/* =========================================
+   10. NUEVO: MENÚ LATERAL (OFF-CANVAS)
+   ========================================= */
+.menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 100000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease;
+}
+
+.menu-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.side-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 320px;
+    height: 100vh;
+    background-color: #fff;
+    z-index: 100001;
+    transform: translateX(-100%);
+    /* Escondido por defecto a la izquierda */
+    transition: transform 0.3s ease;
+    box-shadow: 5px 0 15px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+.side-menu.open {
+    transform: translateX(0);
+    /* Se desliza a la vista */
+}
+
+.side-menu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.side-menu-header h3 {
+    font-size: 18px;
+    color: #333;
+    font-weight: 700;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: #666;
+}
+
+.close-btn:hover {
+    color: #e53935;
+}
+
+.side-menu-list {
+    list-style: none;
+    overflow-y: auto;
+    padding: 10px 0;
+}
+
+.side-menu-list li {
+    border-bottom: 1px solid #fafafa;
+}
+
+.side-menu-list li a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    color: #444;
+    font-weight: 600;
+    font-size: 14px;
+    transition: background 0.3s, color 0.3s;
+}
+
+.side-menu-list li a:hover {
+    background-color: #f9f9f9;
+    color: var(--primary-blue);
+}
+
+.side-menu-list li a i {
+    font-size: 12px;
+    color: #aaa;
+}

@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My phone - Tienda Oficial</title>
+
+    <!-- Librerías Externas -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+    <!-- Hoja de Estilos -->
+    <link rel="stylesheet" href="css/Style.css">
+</head>
+
+<body class="no-scroll">
+
+    <!-- PANTALLA DE CARGA (LOADER) -->
+    <div id="loader-screen">
+        <div class="loader-content">
+            <h2 id="welcome-msg" class="metallic-text">Bienvenidos A My Phone</h2>
+
+            <div class="apple-stage">
+                <div class="apple-wrapper">
+                    <div class="rotate-logo">
+                        <i class="fa-brands fa-apple silver-apple"></i>
+                    </div>
+                </div>
+                <div class="apple-wrapper reflection">
+                    <div class="rotate-logo">
+                        <i class="fa-brands fa-apple silver-apple"></i>
+                    </div>
+                </div>
+            </div>
+
+            <p id="continue-msg">DALE CLIC PARA CONTINUAR</p>
+        </div>
+    </div>
+
+    <!-- BARRA SUPERIOR NEGRA -->
+    <div class="top-bar">
+        <p>ENVÍOS EN 24 HRS. A NIVEL LIMA METROPOLITANA</p>
+    </div>
+
+    <!-- CABECERA PRINCIPAL -->
+    <header class="main-header">
+        <div class="header-container">
+
+            <div class="logo-section">
+                <!-- Enlace al logo -->
+                <a href="https://wa.me/51946330862?text=Hola%20My%20Phone,%20vengo%20de%20la%20página%20web%20y%20quisiera%20pedir%20información."
+                    target="_blank" class="logo-link">
+                    <img src="/img/logo.png" alt="My Phone" class="site-logo">
+                </a>
+                <!-- Botón que abrirá el menú lateral -->
+                <button class="btn-menu-outline" id="open-menu-btn">
+                    <i class="fa-solid fa-bars"></i> Menú
+                </button>
+            </div>
+
+            <div class="search-section">
+                <div class="search-box">
+                    <input type="text" placeholder="Las mejores promos">
+                    <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </div>
+            </div>
+
+            <div class="icons-section">
+                <a href="#" class="btn-login">
+                    <i class="fa-regular fa-user"></i> Iniciar Sesión
+                </a>
+                <a href="#" class="cart-icon">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <span class="cart-badge">0</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==========================================
+         NUEVO: MENÚ LATERAL (OFF-CANVAS) Y OVERLAY
+         ========================================== -->
+    <!-- Fondo oscuro que aparece detrás del menú -->
+    <div id="menu-overlay" class="menu-overlay"></div>
+
+    <!-- Panel lateral del menú -->
+    <aside id="side-menu" class="side-menu">
+        <div class="side-menu-header">
+            <h3>Categorías</h3>
+            <button id="close-menu-btn" class="close-btn"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <ul class="side-menu-list">
+            <li><a href="#">AMAZON & GOOGLE</a></li>
+            <li><a href="#">APPLE <i class="fa-solid fa-chevron-right"></i></a></li>
+            <li><a href="#">AUDIFONOS <i class="fa-solid fa-chevron-right"></i></a></li>
+            <li><a href="#">BELLEZA & SALUD</a></li>
+            <li><a href="#">CARGADOR, POWERBANK</a></li>
+            <li><a href="#">CASE & COVERS <i class="fa-solid fa-chevron-right"></i></a></li>
+            <li><a href="#">MEMORIA & ALMACENAMIENTO</a></li>
+            <li><a href="#">ROCK, BASEUS, USAMS <i class="fa-solid fa-chevron-right"></i></a></li>
+            <li><a href="#">TECLADO, ACC DE COMPUTO</a></li>
+            <li><a href="#">MARCAS</a></li>
+        </ul>
+    </aside>
+
+    <!-- MENÚ DE NAVEGACIÓN (Debajo del header) -->
+    <nav class="categories-nav">
+        <ul class="categories-list">
+            <li><a href="#">AUDIFONOS</a></li>
+            <li><a href="#">BELLEZA & SALUD</a></li>
+            <li><a href="#">CARGADOR, POWERBANK</a></li>
+            <li><a href="#">CASE & COVERS</a></li>
+            <li><a href="#">MEMORIA & ALMACENAMIENTO</a></li>
+            <li><a href="#">ROCK, BASEUS, USAMS</a></li>
+            <li><a href="#">TECLADO, ACC DE COMPUTO</a></li>
+            <li><a href="#">MARCAS</a></li>
+        </ul>
+    </nav>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main>
+        <!-- HERO -->
+        <section class="hero-section">
+            <div class="swiper hero-swiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="hero-placeholder dark-bg">
+                            <h2>iPhone 17 PRO</h2>
+                            <p>[Espacio para imagen principal 1]</p>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="hero-placeholder light-bg">
+                            <h2>MacBook Air M3</h2>
+                            <p>[Espacio para imagen principal 2]</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-button-next hero-next"></div>
+                <div class="swiper-button-prev hero-prev"></div>
+                <div class="swiper-pagination hero-pagination"></div>
+            </div>
+        </section>
+
+        <!-- CATEGORÍAS CARRUSEL -->
+        <section class="categories-section">
+            <div class="container">
+                <h2 class="section-title">Ver todos los productos.</h2>
+
+                <div class="categories-carousel-wrapper">
+                    <div class="swiper categories-swiper">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide cat-slide">
+                                <a href="#" class="category-card">
+                                    <div class="cat-img-placeholder">[Img]</div>
+                                    <h3>AMAZON & GOOGLE</h3>
+                                    <p>Desde S/249.90</p>
+                                </a>
+                            </div>
+                            <div class="swiper-slide cat-slide">
+                                <a href="#" class="category-card">
+                                    <div class="cat-img-placeholder">[Img]</div>
+                                    <h3>APPLE</h3>
+                                    <p>Desde S/469</p>
+                                </a>
+                            </div>
+                            <div class="swiper-slide cat-slide">
+                                <a href="#" class="category-card">
+                                    <div class="cat-img-placeholder">[Img]</div>
+                                    <h3>AUDIFONOS</h3>
+                                    <p>Desde S/89.90</p>
+                                </a>
+                            </div>
+                            <div class="swiper-slide cat-slide">
+                                <a href="#" class="category-card">
+                                    <div class="cat-img-placeholder">[Img]</div>
+                                    <h3>BELLEZA & SALUD</h3>
+                                    <p>Desde S/189.90</p>
+                                </a>
+                            </div>
+                            <div class="swiper-slide cat-slide">
+                                <a href="#" class="category-card">
+                                    <div class="cat-img-placeholder">[Img]</div>
+                                    <h3>CARGADOR, PB</h3>
+                                    <p>Desde S/18</p>
+                                </a>
+                            </div>
+                            <div class="swiper-slide cat-slide">
+                                <a href="#" class="category-card">
+                                    <div class="cat-img-placeholder">[Img]</div>
+                                    <h3>CASE & COVERS</h3>
+                                    <p>Desde S/29.90</p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-button-prev cat-prev"></div>
+                    <div class="swiper-button-next cat-next"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PRODUCTOS NOVEDADES -->
+        <section class="products-section">
+            <div class="container">
+                <h2 class="section-title">Echa un vistazo a las novedades.</h2>
+
+                <div class="products-grid">
+                    <div class="product-card">
+                        <div class="discount-badge">-30%</div>
+                        <div class="prod-img-placeholder">[Img Prod 1]</div>
+                        <h4 class="prod-title">Adaptador Apple Carga Rápida 20W USB-C</h4>
+                        <div class="prod-prices"><span class="old-price">S/129.00</span><span
+                                class="new-price">S/89.90</span></div>
+                        <button class="btn-add-cart"><i class="fa-solid fa-cart-plus"></i> Agregar</button>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="discount-badge">-15%</div>
+                        <div class="prod-img-placeholder">[Img Prod 2]</div>
+                        <h4 class="prod-title">Audífonos Inalámbricos Bluetooth 5.3</h4>
+                        <div class="prod-prices"><span class="old-price">S/99.90</span><span
+                                class="new-price">S/84.90</span></div>
+                        <button class="btn-add-cart"><i class="fa-solid fa-cart-plus"></i> Agregar</button>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="prod-img-placeholder">[Img Prod 3]</div>
+                        <h4 class="prod-title">Funda de Silicona Magnética iPhone 15</h4>
+                        <div class="prod-prices"><span class="new-price">S/45.00</span></div>
+                        <button class="btn-add-cart"><i class="fa-solid fa-cart-plus"></i> Agregar</button>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="discount-badge">-40%</div>
+                        <div class="prod-img-placeholder">[Img Prod 4]</div>
+                        <h4 class="prod-title">Powerbank 10000mAh Carga Súper Rápida</h4>
+                        <div class="prod-prices"><span class="old-price">S/150.00</span><span
+                                class="new-price">S/89.90</span></div>
+                        <button class="btn-add-cart"><i class="fa-solid fa-cart-plus"></i> Agregar</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- BANNERS DOBLES -->
+        <section class="promo-banners">
+            <div class="container">
+                <div class="banners-grid">
+                    <a href="#" class="promo-banner dark-banner">
+                        <div class="promo-content">
+                            <h3>TITANIO</h3>
+                            <h2>iPhone 15 Pro</h2>
+                            <span class="btn-outline">Comprar ahora</span>
+                        </div>
+                        <div class="promo-img-placeholder">[Img iPhone]</div>
+                    </a>
+
+                    <a href="#" class="promo-banner light-banner">
+                        <div class="promo-content">
+                            <h3>NUEVOS</h3>
+                            <h2>Audífonos Inalámbricos</h2>
+                            <span class="btn-outline">Ver catálogo</span>
+                        </div>
+                        <div class="promo-img-placeholder">[Img Audífonos]</div>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- BOTONES FLOTANTES -->
+    <a href="https://wa.me/51946330862" class="floating-btn whatsapp-btn" target="_blank">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+    <button class="floating-btn cart-float-btn">
+        <i class="fa-solid fa-bag-shopping"></i>
+        <span class="cart-badge-float">0</span>
+    </button>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="js/script.js"></script>
+</body>
+
+</html>
